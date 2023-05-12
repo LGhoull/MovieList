@@ -78,7 +78,6 @@
 <body>
 	<div id="header">
 		<span id="logo">MovieList.de</span>
-        <button>Anmelden</button>
         <button>Abmelden</button>
         <button>Meine Liste</button>
 	</div>
