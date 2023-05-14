@@ -1,7 +1,10 @@
 # MovieList
 Internet-basistechnologien oder so
 
-index.php - login und register 
+index/login.php - login und register 
 
-search.php - suche
+home.php - startseite der Suche und Suchbox
 
+search.php - suchergebnisse
+
+details.php - detailanzeige und favorisierung
