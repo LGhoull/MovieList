@@ -169,7 +169,17 @@ padding: 10px;
   .movie-title {
     font-size: 21px;
     font-weight: bold;
+    text-decoration: none;
     margin: 0 0 5px 0;
+    font-family: 'Gill Sans', 'Gill Sans MT';
+  }
+
+  #movie-title-link {
+    font-size: 21px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0 0 5px 0;
+    color: #252525;
     font-family: 'Gill Sans', 'Gill Sans MT';
   }
   
@@ -179,4 +189,5 @@ padding: 10px;
     margin: 0;
     font-family: 'Gill Sans', 'Gill Sans MT';
   }
+
   

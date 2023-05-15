@@ -2,7 +2,7 @@
 <html>
 
     <head>
-	    <link rel="stylesheet" href="style.css">
+        <link href="style.css" rel="stylesheet" type="text/css"/>
         <title>MovieList.de</title>
     </head>
 

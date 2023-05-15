@@ -22,7 +22,7 @@
     $query = $_GET['query'];
     }
     
-    $search = str_replace(' ', '%', $query); // ersetzt Leerzeichen durch % für die API
+    $search = str_replace(' ', '+', $query); // ersetzt Leerzeichen durch % für die API
     
     echo " <link rel='stylesheet' href='style.css'>
              <div id='searchInput'>
@@ -32,10 +32,10 @@
 
 
         // apikey
-        $api_key = "d9640bd65cc9d9c16cb5ca486e476d37";
+        $api_key = "91d40bff";
 
         // url bauen
-        $url = "https://api.themoviedb.org/3/search/movie?api_key=" . $api_key . "&query=" . (string)$search;
+        $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&s=" . (string)$search;
 
         // ergebniss ziehen
         $response = file_get_contents($url);
@@ -44,8 +44,8 @@
         $data = json_decode($response, true);
 
         // auf ergebnisseprüfen
-        if (isset($data['results'][0])) {
-            $first_result = $data['results'][0];
+        if (isset($data['Search'][0])) {
+            $first_result = $data['Search'][0];
             json_encode($first_result);
           } else {
             echo "<ul class='movie-list'> 
@@ -64,12 +64,22 @@
         <link rel="stylesheet" href="style.css">
         </head>
 	<ul class="movie-list">
-		<?php foreach ($data['results'] as $movie): ?>
+		<?php foreach ($data['Search'] as $movie): ?>
 			<li class="movie-item">
-				<img class="movie-poster" src=https://image.tmdb.org/t/p/original/<?php echo $movie['poster_path']; ?>>
-				<div class="movie-details">
-					<h2 class="movie-title"><?php echo $movie['title']; ?></h2>
-					<p class="movie-overview"><?php echo $movie['overview']; ?></p>
+				<img class="movie-poster" src=<?php echo $movie['Poster']; ?>>
+				
+                <div class="movie-details">
+					
+                    <h2 class="movie-title"> 
+                        <a href="details.php?id=<?php echo $movie['imdbID']; ?>" id="movie-title-link">
+                        <?php echo $movie['Title']; ?>
+                        </a>
+                    </h2>
+
+					<p class="movie-overview">
+                        <?php echo $movie['Year'];?> • <?php echo $movie['Type'];?>
+                    </p>
+
 				</div>
 			</li>
 		<?php endforeach; ?>
