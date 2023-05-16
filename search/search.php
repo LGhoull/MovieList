@@ -28,7 +28,8 @@
              <div id='searchInput'>
              Suche für " . $query . "
             </div>
-            ";                              // anzeige des Suchbegriffs ||LÄUFT NOCH NICHT
+            <br>
+            ";                              // anzeige des Suchbegriffs
 
 
         // apikey
@@ -56,7 +57,6 @@
                  </li>
             ";
           }
-
     ?>
 	</div>
     <link rel="stylesheet" href="style.css">
@@ -77,7 +77,22 @@
                     </h2>
 
 					<p class="movie-overview">
-                        <?php echo $movie['Year'];?> • <?php echo $movie['Type'];?>
+                        <?php echo $movie['Year'];?> • 
+                        
+                        <?php 
+                        if($movie['Type'] == 'movie') {
+                            echo 'Film';
+                        } elseif ($movie['Type'] == 'series') {
+                            echo 'Serie';
+                        }
+                        ?> • imdb-Bewertung 
+
+                        <?php 
+                        $movieData = json_decode(file_get_contents("https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movie['imdbID']), true);
+                        echo $movieData['imdbRating']
+
+                        ?>
+
                     </p>
 
 				</div>

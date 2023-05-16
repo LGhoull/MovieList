@@ -58,5 +58,9 @@
             <img src="https://via.placeholder.com/100" alt="Dokumentation">
             <span>Dokumentation</span>
         </div>
+        <div class="box" onclick="window.location.href='filme.html?genre=FSK18'">
+            <img src="https://via.placeholder.com/100" alt="FSK18">
+            <span>FSK18</span>
+        </div>
 </body>
 </html>
