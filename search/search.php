@@ -41,7 +41,7 @@
         // ergebniss ziehen
         $response = file_get_contents($url);
 
-        // in ne json decodieren 
+        // json in ne php value decodieren
         $data = json_decode($response, true);
 
         // auf ergebnisseprüfen
@@ -60,9 +60,11 @@
     ?>
 	</div>
     <link rel="stylesheet" href="style.css">
+
         <head>
         <link rel="stylesheet" href="style.css">
         </head>
+        
 	<ul class="movie-list">
 		<?php foreach ($data['Search'] as $movie): ?>
 			<li class="movie-item">

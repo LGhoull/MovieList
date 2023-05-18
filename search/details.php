@@ -16,22 +16,42 @@
 
 
     <?php
-      $json = file_get_contents('pfad/zur/deine-daten.json');
-      $data = json_decode($json, true);
+
+      $id = "";
+      if(isset($_GET['id'])) {
+        $id = $_GET['id'];
+      }
+
+      // apikey
+      $api_key = "91d40bff";
+
+      // url bauen
+      $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $id;
+
+      // ergebniss ziehen
+      $response = file_get_contents($url);
+
+      // json in ne php value decodieren
+      $data = json_decode($response, true);
+
+      if(isset($data['Title'])) {
+        echo "<h2 id='detail-title'> " . $data['Title'] . " </h2>";
+
+      } else {
+        echo "<h2 id='detail-title'> Fehler: Keine Daten gefunden </h2>";
+      }
     ?>
+
+    <h3>Titel: <?php echo $data['Title']?> </h3>
+    <h3>Erscheinungsdatum: <?php echo $data['Released']?> </h3>
+    <h3>Länge: <?php echo $data['Runtime']?> </h3>
+    <h3>Genres: <?php echo $data['Genre']?> </h3>
+    <h3>Hauptrollen: <?php echo $data['Actors']?> </h3>
+    <h3>Kurzbeschreibung: <?php echo $data['Plot']?> </h3>
+    <h3>imdb Bewertung: <?php echo $data['imdbRating']?> </h3>
+    <h3>Typ: <?php echo $data['Type']?> </h3>
+    <h3>Staffeln: <?php echo $data['totalSeasons']?> </h3>
     
-    <h1>Film-Suchergebnisse</h1>
-    
-    <ul class="movie-list">
-      <?php foreach ($data['results'] as $movie): ?>
-        <li class="movie-item">
-          <img class="movie-poster" src="<?php echo $movie['poster_path']; ?>" alt="<?php echo $movie['title']; ?>">
-          <div class="movie-details">
-            <h2 class="movie-title"><?php echo $movie['title']; ?></h2>
-            <p class="movie-overview"><?php echo $movie['overview']; ?></p>
-          </div>
-        </li>
-      <?php endforeach; ?>
-    </ul>
+
   </body>
 </html>

@@ -83,6 +83,8 @@ width: 50%;
 padding: 10px;
 }
 
+
+
 /*  für den Raster-Container */
 .container {
     display: grid;
@@ -191,6 +193,10 @@ padding: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT';
   }
 
+  .movie-title:hover {
+    text-decoration: underline;
+  }
+
   #movie-title-link {
     font-size: 21px;
     font-weight: bold;
@@ -208,18 +214,9 @@ padding: 10px;
   }
 
 
-  .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
+  #detail-title {
+    font-family: 'Gill Sans', 'Gill Sans MT';
+    font-size: 34px;
+    color: #6666ff;
+    }
   
