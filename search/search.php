@@ -19,37 +19,46 @@
 
 
     if (isset($_GET['query'])) {    //Holt den Parameter query aus der URL
-    $query = $_GET['query'];
+     $query = $_GET['query'];
+    }
+
+    $page;
+    if(isset($_GET['page'])) {
+    $page = $_GET['page'];
+    } else {
+        $page=1;
     }
     
-    $search = str_replace(' ', '+', $query); // ersetzt Leerzeichen durch % für die API
-    
-    echo " <link rel='stylesheet' href='style.css'>
-             <div id='searchInput'>
-             Suche für " . $query . "
-            </div>
-            <br>
-            ";                              // anzeige des Suchbegriffs
-
+    $search = str_replace(' ', '+', $query); // ersetzt Leerzeichen durch + für die API
 
         // apikey
         $api_key = "91d40bff";
 
         // url bauen
-        $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&s=" . (string)$search;
+        $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&s=" . (string)$search . "&page=" . $page;
 
         // ergebniss ziehen
         $response = file_get_contents($url);
 
-        // in ne json decodieren 
+        // json in ne php value decodieren
         $data = json_decode($response, true);
 
         // auf ergebnisseprüfen
         if (isset($data['Search'][0])) {
-            $first_result = $data['Search'][0];
-            json_encode($first_result);
+            $results = $data['totalResults'];
+            echo "
+            <link rel='stylesheet' href='style.css'>
+
+            <div id='infoBoxDiv'>
+            <div id='infoBox1'>  Suche für '" . $query . "' </div>
+            <div id='infoBox2'>" . $results . " gefundene Ergebnisse </div>
+            <div id='infoBox3'>Seite " . $page . "</div>
+            </div>
+            
+            <br>";
           } else {
-            echo "<ul class='movie-list'> 
+            echo "
+            <ul class='movie-list'> 
                  <li class='movie-item'>
                  <div class='movie-details'>
                  <h2 class='movie-title'>Keine Ergebnisse gefunden</h2>
@@ -60,9 +69,11 @@
     ?>
 	</div>
     <link rel="stylesheet" href="style.css">
+
         <head>
         <link rel="stylesheet" href="style.css">
         </head>
+        
 	<ul class="movie-list">
 		<?php foreach ($data['Search'] as $movie): ?>
 			<li class="movie-item">
@@ -84,14 +95,20 @@
                             echo 'Film';
                         } elseif ($movie['Type'] == 'series') {
                             echo 'Serie';
+                        } elseif ($movie['Type'] == 'game') {
+                            echo 'Spiel';
+                        } else {
+                            echo 'Sonstiges';
                         }
                         ?> • imdb-Bewertung 
 
                         <?php 
                         $movieData = json_decode(file_get_contents("https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movie['imdbID']), true);
-                        echo $movieData['imdbRating']
+                        echo $movieData['imdbRating'];
+                        echo "<br>" . $movieData['Plot'];
 
                         ?>
+                        
 
                     </p>
 
@@ -99,6 +116,24 @@
 			</li>
 		<?php endforeach; ?>
 	</ul>
+    
+    <br>
+    <br>
+    <hr>
+
+    <div class="page">
+    <?php
+    $urlnext = "search.php?query=" . (string)$search . "&page=" . ($page + 1);
+    $urlprev = "search.php?query=" . (string)$search . "&page=" . ($page - 1);
+  
+    if($page > 1) {
+        echo "<a href='" . $urlprev . "' class='prev-page'>&#8249;   </a>";
+    }
+        echo "<a href='#' class='page-link'>$page</a>";
+        echo "<a href='" . $urlnext . "' class='next-page'>   &#8250;</a>";
+     ?>
+</div>
+
 </body>
 </html>
 
