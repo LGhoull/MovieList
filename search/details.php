@@ -26,7 +26,7 @@
       $api_key = "91d40bff";
 
       // url bauen
-      $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $id;
+      $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $id . "&plot=full";
 
       // ergebniss ziehen
       $response = file_get_contents($url);

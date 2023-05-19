@@ -132,20 +132,66 @@ padding: 10px;
     margin-top: 10px;
 }
 
-#searchInput {
+#infoBoxDiv {
   display: flex;
-  padding: 10px 10px 10px 10px;
 
+  align-self: center;
+  justify-self: center;
+  
+  justify-content: space-between;
+  justify-items: space-between;
+
+  width: 90%;
+  padding: 10px 10px 10px 10px;
+}
+
+#infoBox1 {
   background-color: #5bcaef;
-  border: dashed 3px;
+  border: dashed 2px;
+
+  font-family: 'Gill Sans', 'Gill Sans MT';
+  font-size: 25px;
+  
+  margin-right: 10px;
+  justify-content: center;
+  align-content: center;
+
+  width: 60%;
+  height: 45px;
+  color: black;
+      }
+
+#infoBox2 {
+  background-color: #5bcaef;
+  border: dashed 2px;
 
   font-family: 'Gill Sans', 'Gill Sans MT';
   font-size: 25px;
 
-  max-width: 65%;
-  min-width: auto;
+  margin-right: 10px;
+  justify-content: center;
+  align-content: center;
+
+  width: 30%;
+  height: 45px;
   color: black;
       }
+
+  #infoBox3 {
+    background-color: #5bcaef;
+    border: dashed 2px;
+  
+    font-family: 'Gill Sans', 'Gill Sans MT';
+    font-size: 25px;
+
+    margin-right: 10px;
+    justify-content: center;
+    align-content: center;
+
+    width: 10%;
+    height: 45px;
+    color: black;
+        }
 
 
 /* Styling für die Film-Liste */
@@ -220,3 +266,30 @@ padding: 10px;
     color: #6666ff;
     }
   
+    .page {
+      display: flex;
+      justify-content: center;
+      justify-self: center;
+      align-self: center;
+      justify-content: center;
+      font-family: 'Arial';
+      font-size: 35px;
+      align-items: center;
+      color: black;
+    }
+    
+    .page-link {
+      text-decoration: none;
+      color: black;
+      font-family: 'Gill Sans', 'Gill Sans MT';
+      font-size: 30x;
+    }
+    
+    .prev-page,
+    .next-page {
+      font-size: 45px;
+      text-decoration: none;
+      color: #000;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
