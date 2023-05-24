@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 
+    <?php
+        require '../reglog/config.php';
+        session_start();
+        if(!isset($_SESSION['id'])) {
+            header("Location: ../reglog/login.php");
+            die();
+        }
+    ?>
+
     <head>
         <link href="style.css" rel="stylesheet" type="text/css"/>
         <title>MovieList.de</title>
@@ -9,20 +18,19 @@
     <body>
         <div id="header">
         <a href="home.php" id="logo">MovieList.de</a>
-            <button onclick="window.location.href='home.php';">Home</button>
-            <button onclick="window.location.href='liste.php';">Meine Liste</button>
-            <button onclick="window.location.href='logout.php';">Abmelden</button>
+            <button class="button" onclick="window.location.href='home.php';">Home</button>
+            <button class="button" onclick="window.location.href='liste.php';">Meine Liste</button>
+            <button class="button" onclick="window.location.href='../reglog/logout.php';">Abmelden</button>
         </div>
     <br> <br>
     
     <div id="welcome">
-        Willkommen auf MovieSearch.de, [Account.Name]
-
+        Willkommen auf MovieList.de, <?php echo $_SESSION['name'] ?>
     </div>
 
 	<div id="search">
 		<input type="text" placeholder="Suche...">
-        <button onclick="window.location.href='search.php?query=' + encodeURIComponent(document.querySelector('#search input[type=text]').value);">Suchen</button>
+        <button class="button2" onclick="window.location.href='search.php?query=' + encodeURIComponent(document.querySelector('#search input[type=text]').value);"><img id="searchIcon" src="./media/search.png"/></button>
 	</div>
 
     <div class="container">

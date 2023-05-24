@@ -36,9 +36,18 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
     <meta charset="utf-8">
     <title>Registration</title>
     <link rel="stylesheet" href="./css/register.css"> 
+    <link rel="stylesheet" href="./css/header.css">
   </head>
   <body>
+
+  <div id="header">
+            <a href="home.php" id="logo">MovieList.de</a>
+            <button onclick="window.location.href='login.php';">Anmelden</button>
+        </div>
+    <br> <br> <br>
+
     <h2>Registration</h2>
+
     <form class="" action="" method="post" autocomplete="off">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required value=""><br>
@@ -53,6 +62,6 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
       <button type="submit" name="submit">Register</button>
     </form>
     <br>
-    <a href="login.php">Login</a> 
+    <a class="aa" href="login.php">Login</a> 
   </body>
 </html>

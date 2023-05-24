@@ -1,79 +1,38 @@
 body {
-    background-color: #1e1e1e;
+    background-color: #f2f2f2;
 }
 
 #header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 10px 10px 10px;
-    background-color: #2d2d30;  
-    border-radius: 14px;
+display: flex;
+justify-content: space-between;
+padding: 10px 20px 20px 10px;
+background-color: #333;
+border-radius: 14px;
+color: white;
     }
 
 #logo {
-  display: flex;
-  font-size: 45px;
-  font-family: 'Gill Sans', 'Gill Sans MT';
-  margin-right: auto;
-  padding-left: 20px;
-  color: #EEEEEE;
-  text-decoration: none;
+    display: flex;
+    font-size: 45px;
+    font-family: 'Gill Sans', 'Gill Sans MT';
+    margin-right: auto;
+    padding-left: 20px;
+    color: wheat;
+    text-decoration: none;
 }
 
-
-#welcome {
-  display: flex;
-  justify-content: space-between;
-  border-radius: 14px;
-  font-family: 'Gill Sans', 'Gill Sans MT';
-  font-size: 40px;
-  color: #d2d2d2;
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-  }
-
-.button {
-  background-color: #2d2d30;
-  color: whitesmoke;
-  border: none;
-  padding: 10px;
-  font-family: 'Gill Sans', 'Gill Sans MT';
-  margin-left: 10px;
-  font-size: 25px;
-  border-radius: 6px;
-  font-weight: bold;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border: transparent solid 2px;
-}
-
-.button:hover {
-  border: whitesmoke solid 2px; 
-}
-
-#searchIcon {
-  height: 25px;
-  width: 25px;
-}
-
-.button2 {
-  display: flex;
-  background-color: #2d2d30;
-  border: none;
-  padding: 10px;
-  margin-left: 5px;
-  border-radius: 6px;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border: transparent solid 2px;
-  height: 38.1px;
-}
-
-.button2:hover {
-  border: whitesmoke solid 2px; 
+#header button {
+    background-color: #6666ff;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT';
+    font-size: 20px;
+    margin-left: 10px;
+    border-radius: 6px;
+    align-items: center;
+    margin-top: auto;
+    cursor: pointer;
 }
 
 #search {
@@ -84,6 +43,7 @@ height: 100px;
 width: auto;
 font-size: 20px;
 margin-top: 20px;
+
 }
 
 #search input[type="text"] {
@@ -92,15 +52,37 @@ padding: 10px;
 border: none;
 border-radius: 5px;
 font-family: 'Gill Sans', 'Gill Sans MT';
-background-color: #2d2d30;
-color: #d2d2d2;
+font-size: 20px;
+box-shadow: 0px 0px 5px grey;
 font-size: 16px;
 outline: none;
 }
 
-#search input:hover {
-  box-shadow: 0px 0px 5px #5d5d5e(72, 71, 71);
+#search button {
+background-color: #6666ff;
+color: white;
+border: none;
+padding: 10px;
+font-family: 'Gill Sans', 'Gill Sans MT';
+border-radius: 6px;
+font-size: 20px;
+margin-left: 10px;
+cursor: pointer;
 }
+
+
+#welcome {
+display: flex;
+justify-content: space-between;
+border-radius: 14px;
+font-family: 'Gill Sans', 'Gill Sans MT';
+font-size: 40px;
+color: #6666ff;
+margin: auto;
+width: 50%;
+padding: 10px;
+}
+
 
 
 /*  für den Raster-Container */
@@ -124,10 +106,9 @@ outline: none;
 
 /* für die einzelnen Kästen */
 .box {
-    background-color: #2d2d30;
-    /*box-shadow: 0px 0px 4px #2d2d2d;*/
+    background-color: #5bcaef;
+    box-shadow: 0px 0px 4px rgb(153, 153, 153);
     border-radius: 7px;
-    border: transparent solid 2px; 
 
     padding: 10px;
     max-height: 180px;
@@ -142,14 +123,13 @@ outline: none;
     justify-content: center;
 }
 .box:hover {
-    border: whitesmoke solid 2px; 
+    background-color: #4eaccb;
 }
 
 /* für die Texte innerhalb der Kästen */
 .box span {
     display: block;
     margin-top: 10px;
-    color: whitesmoke;
 }
 
 #infoBoxDiv {
@@ -166,7 +146,7 @@ outline: none;
 }
 
 #infoBox1 {
-  background-color: #2d2d30;
+  background-color: #5bcaef;
   border: dashed 2px;
 
   font-family: 'Gill Sans', 'Gill Sans MT';
@@ -175,15 +155,14 @@ outline: none;
   margin-right: 10px;
   justify-content: center;
   align-content: center;
-  justify-items: center;
 
   width: 60%;
   height: 45px;
-  color: #d2d2d2;
+  color: black;
       }
 
 #infoBox2 {
-  background-color: #2d2d30;
+  background-color: #5bcaef;
   border: dashed 2px;
 
   font-family: 'Gill Sans', 'Gill Sans MT';
@@ -192,15 +171,14 @@ outline: none;
   margin-right: 10px;
   justify-content: center;
   align-content: center;
-  justify-items: center;
 
   width: 30%;
   height: 45px;
-  color: #d2d2d2;
+  color: black;
       }
 
   #infoBox3 {
-    background-color: #2d2d30;
+    background-color: #5bcaef;
     border: dashed 2px;
   
     font-family: 'Gill Sans', 'Gill Sans MT';
@@ -209,11 +187,10 @@ outline: none;
     margin-right: 10px;
     justify-content: center;
     align-content: center;
-    justify-items: center;
 
     width: 10%;
     height: 45px;
-    color: #d2d2d2;
+    color: black;
         }
 
 
@@ -236,7 +213,7 @@ outline: none;
     display: flex;
     align-items: center;
     padding: 10px;
-    border-bottom: 2px solid #2d2d30;
+    border-bottom: 2px solid #5c5c5c;
     font-family: 'Gill Sans', 'Gill Sans MT';
   }
   
@@ -271,13 +248,13 @@ outline: none;
     font-weight: bold;
     text-decoration: none;
     margin: 0 0 5px 0;
-    color: #d2d2d2;
+    color: #252525;
     font-family: 'Gill Sans', 'Gill Sans MT';
   }
   
   .movie-overview {
     font-size: 15px;
-    color: #d2d2d2;
+    color: #666;
     margin: 0;
     font-family: 'Gill Sans', 'Gill Sans MT';
   }
@@ -286,7 +263,7 @@ outline: none;
   #detail-title {
     font-family: 'Gill Sans', 'Gill Sans MT';
     font-size: 34px;
-    color: #d2d2d2;
+    color: #6666ff;
     }
   
     .page {
@@ -298,12 +275,12 @@ outline: none;
       font-family: 'Arial';
       font-size: 35px;
       align-items: center;
-      color: #d2d2d2;
+      color: black;
     }
     
     .page-link {
       text-decoration: none;
-      color: #d2d2d2;
+      color: black;
       font-family: 'Gill Sans', 'Gill Sans MT';
       font-size: 30x;
     }
@@ -312,7 +289,7 @@ outline: none;
     .next-page {
       font-size: 45px;
       text-decoration: none;
-      color: #d2d2d2;
+      color: #000;
       padding-left: 10px;
       padding-right: 10px;
     }
