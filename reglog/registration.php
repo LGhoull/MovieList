@@ -20,8 +20,10 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
   } else {
     if ($password == $confirmpassword) { // Überprüfen, ob das Passwort mit der Bestätigung übereinstimmt
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Passwort hashen (sicherer als das Klartext-Passwort zu speichern)
-      $query = "INSERT INTO tb_user VALUES('', '$name', '$username', '$email', '$hashedPassword')"; // SQL-Query zum Einfügen des neuen Benutzers
+      $query = "insert into tb_user('name','username','email','password') VALUES('$name', '$username', '$email', '$hashedPassword');"; // SQL-Query zum Einfügen des neuen Benutzers
+      echo "<script> alert('$query'); </script>";
       mysqli_query($conn, $query); // Query ausführen, um den neuen Benutzer in die Datenbank einzufügen
+      echo "<script> alert('$query'); </script>";
       echo "<script> alert('Registration Successful'); </script>"; // Erfolgsmeldung ausgeben
     } else {
       echo "<script> alert('Password Does Not Match'); </script>"; // Fehlermeldung ausgeben, dass die Passwörter nicht übereinstimmen
@@ -41,25 +43,25 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
   <body>
 
   <div id="header">
-            <a href="home.php" id="logo">MovieList.de</a>
-            <button onclick="window.location.href='login.php';">Anmelden</button>
+            <a href="../search/home.php" id="logo">MovieList.de</a>
+            <button class="button" onclick="window.location.href='login.php';">Anmelden</button>
         </div>
     <br> <br> <br>
 
     <h2>Registration</h2>
 
-    <form class="" action="" method="post" autocomplete="off">
+    <form class="" action="registration.php" method="post" autocomplete="on">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required value=""><br>
       <label for="username">Username:</label>
       <input type="text" name="username" id="username" required value=""><br>
       <label for="email">Email:</label>
       <input type="email" name="email" id="email" required value=""><br>
-      <label for="password">Password:</label>
+      <label for="password">Passwort:</label>
       <input type="password" name="password" id="password" required value=""><br>
-      <label for="confirmpassword">Confirm Password:</label>
+      <label for="confirmpassword">Passwort bestätigen:</label>
       <input type="password" name="confirmpassword" id="confirmpassword" required value=""><br>
-      <button type="submit" name="submit">Register</button>
+      <button type="submit" name="submit">Registrieren</button>
     </form>
     <br>
     <a class="aa" href="login.php">Login</a> 

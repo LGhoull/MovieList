@@ -1,9 +1,11 @@
 body {
   font-family: 'Gill Sans', 'Gill Sans MT';
+  background-color: #1e1e1e;
 }
 
 h2 {
   text-align: center;
+  color: whitesmoke;
 }
 
 form {
@@ -15,6 +17,7 @@ label {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
+  color: whitesmoke;
 }
 
 input[type="text"],
@@ -23,22 +26,36 @@ input[type="password"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid transparent;
   border-radius: 4px;
+  font-size: 16px;
   box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT';
+  background-color: #2d2d30;
+  color: #d2d2d2;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover {
+  box-shadow: 0px 0px 5px #5d5d5e(72, 71, 71);
 }
 
 button[type="submit"] {
   padding: 10px 20px;
-  background-color: #6666ff;
+  background-color: #2d2d30;
   color: white;
   border: none;
+  font-family: 'Gill Sans', 'Gill Sans MT';
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid #2d2d30;
   border-radius: 4px;
   cursor: pointer;
 }
 
 button[type="submit"]:hover {
-  background-color: #6666ff;
+  border: 2px solid whitesmoke;
 }
 
 .aa {
@@ -46,12 +63,14 @@ button[type="submit"]:hover {
   text-align: center;
   margin-top: 10px;
   text-decoration: none;
-  color: #6666ff;
+  color: whitesmoke;
   font-weight: bold;
+  font-size: 19px;
 }
 
 a:hover {
   text-decoration: underline;
+  text-decoration-color: whitesmoke;
 }
 
 .alert {
