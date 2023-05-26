@@ -16,7 +16,7 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
   $duplicate = mysqli_query($conn, "SELECT * FROM tb_user WHERE username = '$username' OR email = '$email'"); // Überprüfen, ob der Benutzername oder die E-Mail bereits vorhanden sind
 
   if (mysqli_num_rows($duplicate) > 0) { // Überprüfen, ob bereits ein Benutzer mit demselben Benutzernamen oder derselben E-Mail-Adresse existiert
-    echo "<script> alert('Username or Email Has Already Taken'); </script>"; // Fehlermeldung ausgeben
+    echo "<script> alert('Username or Email Has Already been Taken'); </script>"; // Fehlermeldung ausgeben
   } else {
     if ($password == $confirmpassword) { // Überprüfen, ob das Passwort mit der Bestätigung übereinstimmt
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Passwort hashen (sicherer als das Klartext-Passwort zu speichern)

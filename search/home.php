@@ -27,7 +27,7 @@
 
     <div class="container">
         <div class="box" onclick="window.location.href='search.php?query=action'">
-            <img src="https://via.placeholder.com/100" alt="Action">
+            <img class= "imgCard" src="https://via.placeholder.com/100" alt="Action">
             <span>Action</span>
         </div>
         <div class="box" onclick="window.location.href='search.php?query=comedy'">
