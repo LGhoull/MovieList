@@ -9,12 +9,11 @@
             die();
         }
     ?>
-
     <head>
         <link href="style.css" rel="stylesheet" type="text/css"/>
         <title>MovieList.de</title>
     </head>
-
+<!--moin-->
     <body>
         <div id="header">
         <a href="home.php" id="logo">MovieList.de</a>
