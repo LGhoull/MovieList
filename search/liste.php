@@ -23,6 +23,52 @@
             <button class="button" onclick="window.location.href='../reglog/logout.php';">Abmelden</button>
         </div>
     <br> <br>
+    <?php
+
+    $page;
+    if(isset($_GET['page'])) {
+    $page = $_GET['page'];
+    } else {
+        $page=1;
+    }
+
+        // apikey
+        $api_key = "91d40bff";
+
+        // url bauen
+        $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=1&page=" . $page;
+
+        // ergebniss ziehen
+        $response = file_get_contents($url);
+
+        // json in ne php value decodieren
+        $data = json_decode($response, true);
+
+        // auf ergebnisseprüfen
+        if (isset($data['Search'][0])) {
+            $results = $data['totalResults'];
+            echo "
+            <link rel='stylesheet' href='style.css'>
+
+            <div id='infoBoxDiv'>
+            <div id='infoBox1'>  Suche für '" . 1 . "' </div>
+            <div id='infoBox2'>" . $results . " gefundene Ergebnisse </div>
+            <div id='infoBox3'>Seite " . $page . "</div>
+            </div>
+            
+            <br>";
+          } else {
+            echo "
+            <ul class='movie-list'> 
+                 <li class='movie-item'>
+                 <div class='movie-details'>
+                 <h2 class='movie-title'>Keine Ergebnisse gefunden</h2>
+                 </div>
+                 </li>
+            ";
+          }
+    ?>
+	</div>
     <link rel="stylesheet" href="style.css">
 
         <head>
