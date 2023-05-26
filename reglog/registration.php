@@ -16,17 +16,16 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
   $duplicate = mysqli_query($conn, "SELECT * FROM tb_user WHERE username = '$username' OR email = '$email'"); // Überprüfen, ob der Benutzername oder die E-Mail bereits vorhanden sind
 
   if (mysqli_num_rows($duplicate) > 0) { // Überprüfen, ob bereits ein Benutzer mit demselben Benutzernamen oder derselben E-Mail-Adresse existiert
-    echo "<script> alert('Username or Email Has Already Taken'); </script>"; // Fehlermeldung ausgeben
+    echo "<script> alert('Username oder Email bereits vergeben'); </script>"; // Fehlermeldung ausgeben
   } else {
     if ($password == $confirmpassword) { // Überprüfen, ob das Passwort mit der Bestätigung übereinstimmt
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Passwort hashen (sicherer als das Klartext-Passwort zu speichern)
-      $query = "insert into tb_user('name','username','email','password') VALUES('$name', '$username', '$email', '$hashedPassword');"; // SQL-Query zum Einfügen des neuen Benutzers
-      echo "<script> alert('$query'); </script>";
+      $query = "insert into tb_user(name,username,email,password) VALUES('$name', '$username', '$email', '$hashedPassword');"; // SQL-Query zum Einfügen des neuen Benutzers
       mysqli_query($conn, $query); // Query ausführen, um den neuen Benutzer in die Datenbank einzufügen
-      echo "<script> alert('$query'); </script>";
-      echo "<script> alert('Registration Successful'); </script>"; // Erfolgsmeldung ausgeben
+      echo "<script> alert('Das Konto wurde angelegt. Weiterleitung...'); </script>"; // Erfolgsmeldung ausgeben
+      
     } else {
-      echo "<script> alert('Password Does Not Match'); </script>"; // Fehlermeldung ausgeben, dass die Passwörter nicht übereinstimmen
+      echo "<script> alert('Das eingegebene Passwort ist nicht korrekt'); </script>"; // Fehlermeldung ausgeben, dass die Passwörter nicht übereinstimmen
     }
   }
 }

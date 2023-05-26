@@ -85,6 +85,7 @@ border: whitesmoke solid 2px;
   border-top: 4px solid #2d2d30;
   animation: spin 1s infinite linear;
   justify-content: center;
+  align-items: center;
   justify-self: center;
   align-self: center;
 }

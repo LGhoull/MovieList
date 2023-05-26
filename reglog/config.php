@@ -1,12 +1,14 @@
 <?php
 session_start();
 $host = "localhost";
-$name = "movielist";
+$dbname = "movielist";
 $user = "movielist";
 $passwort = "xelA";
-try{
-    $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
-} catch (PDOException $e){
-    echo "SQL Error: ".$e->getMessage();
+
+// Verbindung herstellen
+$conn = mysqli_connect($host, $user, $passwort, $dbname);
+// Verbindung prüfen
+if ($conn->connect_error) {
+    echo "$conn->connect_error";
+  die("Verbindung fehlgeschlagen: " . $conn->connect_error);
 }
- ?>

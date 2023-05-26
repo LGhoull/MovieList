@@ -70,5 +70,13 @@
             <img src="https://via.placeholder.com/100" alt="FSK18">
             <span>FSK18</span>
         </div>
+    </div>
+        <br> 
+
+        <hr>
+
+        <div class="footer">
+            <a href="">Dunkler Modus</a>
+        </div>
 </body>
 </html>
