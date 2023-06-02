@@ -21,18 +21,24 @@
         </div>
         <br> <br>
         <?php
-
-        $page;
-        if(isset($_GET['page'])) {
-            $page = $_GET['page'];
-        } else {
-            $page=1;
-        }
             // apikey
             $api_key = "91d40bff";
 
             // url bauen
-            $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=1&page=" . $page;
+            $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=tt1632701";
+
+            /*// get the movie list from database
+            $result = mysqli_query($conn, "SELECT * FROM tb_movielists WHERE id = '$_SESSION["id"]'");
+            $row = mysqli_fetch_assoc($result);
+            if (mysqli_num_rows($result) > 0) {
+                $movieIds = $row["movieId"];
+                foreach ($movieIds as $movieId){
+                    //display movie
+                }
+                
+            } else {
+                //list length 0
+            }*/
 
             // ergebniss ziehen
             $response = file_get_contents($url);
@@ -40,29 +46,19 @@
             // json in ne php value decodieren
             $data = json_decode($response, true);
 
-            // auf ergebnisseprüfen
-            if (isset($data['Search'][0])) {
-                $results = $data['totalResults'];
-                echo "
-                <link rel='stylesheet' href='style.css'>
+            
+            
+            $results = $data;
+            echo "
+            <link rel='stylesheet' href='style.css'>
 
-                <div id='infoBoxDiv'>
-                    <div id='infoBox1'>  Suche für '" . 1 . "' </div>
-                    <div id='infoBox2'>" . $results . " gefundene Ergebnisse </div>
-                    <div id='infoBox3'>Seite " . $page . "</div>
-                </div>
-                
-                <br>";
-            } else {
-                    echo "
-                    <ul class='movie-list'> 
-                        <li class='movie-item'>
-                        <div class='movie-details'>
-                        <h2 class='movie-title'>Keine Ergebnisse gefunden</h2>
-                        </div>
-                        </li>
-                    ";
-            }
+            <div id='infoBoxDiv'>
+                <div id='infoBox1'>  Eigene Liste </div>
+                <div id='infoBox2'>" . $results . " gefundene Ergebnisse </div>
+                <div id='infoBox3'>Seite " . $page . "</div>
+            </div>
+            
+            <br>";
         ?>
         <link rel="stylesheet" href="style.css">
             <head>
