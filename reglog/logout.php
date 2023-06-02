@@ -23,14 +23,15 @@ require 'config.php';
         <a href='../search/home.php' id='logo'>MovieList.de</a>
         </div>
         <br> <br> <br> <br> <br>
-
+        <div class='logoutDiv'>
         <h2>Du wirst nun ausgeloggt...</h2><div class='spinner'></div>
+        </div>
         </body>
     </html>
 
     ";
     destroySession();
-    header('Refresh: 3; url=login.php');
+    header('Refresh: 5; url=login.php');
 
     exit;
 ?>
