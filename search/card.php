@@ -1,5 +1,7 @@
 <?php
 
+//Testklasse - nicht zu beachten
+
 class card {
     private $cardname;
     private $displayname;

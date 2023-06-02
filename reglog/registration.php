@@ -16,15 +16,16 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
   $duplicate = mysqli_query($conn, "SELECT * FROM tb_user WHERE username = '$username' OR email = '$email'"); // Überprüfen, ob der Benutzername oder die E-Mail bereits vorhanden sind
 
   if (mysqli_num_rows($duplicate) > 0) { // Überprüfen, ob bereits ein Benutzer mit demselben Benutzernamen oder derselben E-Mail-Adresse existiert
-    echo "<script> alert('Username or Email Has Already Taken'); </script>"; // Fehlermeldung ausgeben
+    echo "<script> alert('Username oder Email bereits vergeben'); </script>"; // Fehlermeldung ausgeben
   } else {
     if ($password == $confirmpassword) { // Überprüfen, ob das Passwort mit der Bestätigung übereinstimmt
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Passwort hashen (sicherer als das Klartext-Passwort zu speichern)
-      $query = "INSERT INTO tb_user VALUES('', '$name', '$username', '$email', '$hashedPassword')"; // SQL-Query zum Einfügen des neuen Benutzers
+      $query = "insert into tb_user(name,username,email,password) VALUES('$name', '$username', '$email', '$hashedPassword');"; // SQL-Query zum Einfügen des neuen Benutzers
       mysqli_query($conn, $query); // Query ausführen, um den neuen Benutzer in die Datenbank einzufügen
-      echo "<script> alert('Registration Successful'); </script>"; // Erfolgsmeldung ausgeben
+      echo "<script> alert('Das Konto wurde angelegt. Weiterleitung...'); </script>"; // Erfolgsmeldung ausgeben
+      
     } else {
-      echo "<script> alert('Password Does Not Match'); </script>"; // Fehlermeldung ausgeben, dass die Passwörter nicht übereinstimmen
+      echo "<script> alert('Das eingegebene Passwort ist nicht korrekt'); </script>"; // Fehlermeldung ausgeben, dass die Passwörter nicht übereinstimmen
     }
   }
 }
@@ -41,25 +42,25 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
   <body>
 
   <div id="header">
-            <a href="home.php" id="logo">MovieList.de</a>
-            <button onclick="window.location.href='login.php';">Anmelden</button>
+            <a href="../search/home.php" id="logo">MovieList.de</a>
+            <button class="button" onclick="window.location.href='login.php';">Anmelden</button>
         </div>
     <br> <br> <br>
 
     <h2>Registration</h2>
 
-    <form class="" action="" method="post" autocomplete="off">
+    <form class="" action="registration.php" method="post" autocomplete="on">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required value=""><br>
       <label for="username">Username:</label>
       <input type="text" name="username" id="username" required value=""><br>
       <label for="email">Email:</label>
       <input type="email" name="email" id="email" required value=""><br>
-      <label for="password">Password:</label>
+      <label for="password">Passwort:</label>
       <input type="password" name="password" id="password" required value=""><br>
-      <label for="confirmpassword">Confirm Password:</label>
+      <label for="confirmpassword">Passwort bestätigen:</label>
       <input type="password" name="confirmpassword" id="confirmpassword" required value=""><br>
-      <button type="submit" name="submit">Register</button>
+      <button type="submit" name="submit">Registrieren</button>
     </form>
     <br>
     <a class="aa" href="login.php">Login</a> 

@@ -35,21 +35,21 @@ if (isset($_POST["submit"])) {
    <body>
 
       <div id="header">
-        <a href="home.php" id="logo">MovieList.de</a>
-        <button onclick="window.location.href='login.php';">Anmelden</button>
+        <a href="../search/home.php" id="logo">MovieList.de</a>
+        <button class="button" onclick="window.location.href='registration.php';">Registrieren</button>
       </div>
     <br> <br> <br>
 
     <h2>Login</h2>
 
     <form class="" action="" method="post" autocomplete="off">
-      <label for="usernameemail">Username or Email :</label>
+      <label for="usernameemail">Username oder Email :</label>
       <input type="text" name="usernameemail" id="usernameemail" required value=""><br>
-      <label for="password">Password :</label>
+      <label for="password">Passwort :</label>
       <input type="password" name="password" id="password" required value=""><br>
       <button type="submit" name="submit">Login</button>
     </form>
     <br>
-    <a class="aa" href="registration.php">Registration</a>
+    <a class="aa" href="registration.php">Registrierung</a>
   </body>
 </html>
