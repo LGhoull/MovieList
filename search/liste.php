@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
-
     <?php
         require '../reglog/config.php';
         session_start();
-        if(!isset($_SESSION['id'])) {
+        /*if(!isset($_SESSION['id'])) {
             header("Location: ../reglog/login.php");
             die();
-        }
+        }*/
     ?>
-
     <head>
 	    <link rel="stylesheet" href="style.css">
         <title>MovieList.de</title>
     </head>
-    
     <body>
         <div id="header">
             <a href="home.php" id="logo">MovieList.de</a>
@@ -22,52 +19,51 @@
             <button class="button" onclick="window.location.href='liste.php';">Meine Liste</button>
             <button class="button" onclick="window.location.href='../reglog/logout.php';">Abmelden</button>
         </div>
-            <br> <br>
-            <?php
+        <br> <br>
+        <?php
 
-            $page;
-            if(isset($_GET['page'])) {
-                $page = $_GET['page'];
+        $page;
+        if(isset($_GET['page'])) {
+            $page = $_GET['page'];
+        } else {
+            $page=1;
+        }
+            // apikey
+            $api_key = "91d40bff";
+
+            // url bauen
+            $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=1&page=" . $page;
+
+            // ergebniss ziehen
+            $response = file_get_contents($url);
+
+            // json in ne php value decodieren
+            $data = json_decode($response, true);
+
+            // auf ergebnisseprüfen
+            if (isset($data['Search'][0])) {
+                $results = $data['totalResults'];
+                echo "
+                <link rel='stylesheet' href='style.css'>
+
+                <div id='infoBoxDiv'>
+                    <div id='infoBox1'>  Suche für '" . 1 . "' </div>
+                    <div id='infoBox2'>" . $results . " gefundene Ergebnisse </div>
+                    <div id='infoBox3'>Seite " . $page . "</div>
+                </div>
+                
+                <br>";
             } else {
-                $page=1;
-            }
-                // apikey
-                $api_key = "91d40bff";
-
-                // url bauen
-                $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=1&page=" . $page;
-
-                // ergebniss ziehen
-                $response = file_get_contents($url);
-
-                // json in ne php value decodieren
-                $data = json_decode($response, true);
-
-                // auf ergebnisseprüfen
-                if (isset($data['Search'][0])) {
-                    $results = $data['totalResults'];
                     echo "
-                    <link rel='stylesheet' href='style.css'>
-
-                    <div id='infoBoxDiv'>
-                        <div id='infoBox1'>  Suche für '" . 1 . "' </div>
-                        <div id='infoBox2'>" . $results . " gefundene Ergebnisse </div>
-                        <div id='infoBox3'>Seite " . $page . "</div>
-                    </div>
-                    
-                    <br>";
-                } else {
-                        echo "
-                        <ul class='movie-list'> 
-                            <li class='movie-item'>
-                            <div class='movie-details'>
-                            <h2 class='movie-title'>Keine Ergebnisse gefunden</h2>
-                            </div>
-                            </li>
-                        ";
-                }
-            ?>
-	    </div>
+                    <ul class='movie-list'> 
+                        <li class='movie-item'>
+                        <div class='movie-details'>
+                        <h2 class='movie-title'>Keine Ergebnisse gefunden</h2>
+                        </div>
+                        </li>
+                    ";
+            }
+        ?>
         <link rel="stylesheet" href="style.css">
             <head>
                 <link rel="stylesheet" href="style.css">
