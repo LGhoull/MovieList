@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-    <?php
+    <?php                                               // Siehe home.php
         require '../reglog/config.php';
         session_start();
         if(!isset($_SESSION['id'])) {
@@ -10,12 +10,12 @@
         }
     ?>
 
-    <head>
+    <head>                                          <!--siehe home.php-->
 	    <link rel="stylesheet" href="style.css">
         <title>MovieList.de</title>
     </head>
     
-    <body>
+    <body>                                          <!--siehe home.php-->
         <div id="header">
         <a href="home.php" id="logo">MovieList.de</a>
             <button class="button" onclick="window.location.href='home.php';">Home</button>
@@ -28,32 +28,32 @@
     <?php
 
 
-    if (isset($_GET['query'])) {    //Holt den Parameter query aus der URL
+    if (isset($_GET['query'])) {    // Parameter "query" aus der URL holen (GET Methode)
      $query = $_GET['query'];
     }
 
-    $page;
+    $page;                          // Aktuelle Seite aufrufen, falls keine vorhanden auf 1 setzen
     if(isset($_GET['page'])) {
     $page = $_GET['page'];
     } else {
         $page=1;
     }
     
-    $search = str_replace(' ', '+', $query); // ersetzt Leerzeichen durch + für die API
+    $search = str_replace(' ', '+', $query); // Ersetzt Leerzeichen durch + für die OmdbAPI
 
-        // apikey
+        // Apikey der OmdbAPI
         $api_key = "91d40bff";
 
-        // url bauen
+        // URL bauen
         $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&s=" . (string)$search . "&page=" . $page;
 
-        // ergebniss ziehen
+        // Ergebnis abrufen
         $response = file_get_contents($url);
 
-        // json in ne php value decodieren
+        // JSON in eine PHP-Value decodieren
         $data = json_decode($response, true);
 
-        // auf ergebnisseprüfen
+        // Prüfen, ob Ergebnisse vorhanden sind & Darstellung der Infoboxen
         if (isset($data['Search'][0])) {
             $results = $data['totalResults'];
             echo "
@@ -66,7 +66,7 @@
             </div>
             
             <br>";
-          } else {
+          } else {      // Falls keine Ergebnisse geliefert wurden, auf keine Ergebnisse hinweisen
             echo "
             <ul class='movie-list'> 
                  <li class='movie-item'>
@@ -78,17 +78,11 @@
           }
     ?>
 	</div>
-    <link rel="stylesheet" href="style.css">
 
-        <head>
-        <link rel="stylesheet" href="style.css">
-        </head>
-        
-	<ul class="movie-list">
-		<?php foreach ($data['Search'] as $movie): ?>
+	<ul class="movie-list">              <!--ul = Liste-->
+		<?php foreach ($data['Search'] as $movie): ?>   <!--Schleife, die jeden Eintrag des Arrays 'Search' darstellt-->
 			<li class="movie-item">
-				<img class="movie-poster" src=<?php echo $movie['Poster']; ?>>
-				
+				<img class="movie-poster" src=<?php echo $movie['Poster']; ?>>      <!--Die einzelnen Komponenten Poster, Details, Titel & Overwiev werden dargestellt-->
                 <div class="movie-details">
 					
                     <h2 class="movie-title"> 
@@ -101,7 +95,7 @@
                         <?php echo $movie['Year'];?> • 
                         
                         <?php 
-                        if($movie['Type'] == 'movie') {
+                        if($movie['Type'] == 'movie') {     // Anzeige der Art des Objekts, es gibt movie, series & game
                             echo 'Film';
                         } elseif ($movie['Type'] == 'series') {
                             echo 'Serie';
@@ -112,7 +106,7 @@
                         }
                         ?> • imdb-Bewertung 
 
-                        <?php 
+                        <?php           // Abrufen der imdb-Bewertung & Kurzübersicht, da diese nicht in der Suchanfrage nicht intigriert ist. > zeitaufwendig & langsam / TODO: lösen
                         $movieData = json_decode(file_get_contents("https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movie['imdbID']), true);
                         echo $movieData['imdbRating'];
                         echo "<br>" . $movieData['Plot'];
@@ -131,21 +125,18 @@
     <br>
     <hr>
 
-    <div class="page">
+    <div class="page">          <!--Seitenauswahl, aktuelle Seite wird per URL(GET) weiter gegeben-->
     <?php
-    $urlnext = "search.php?query=" . (string)$search . "&page=" . ($page + 1);
-    $urlprev = "search.php?query=" . (string)$search . "&page=" . ($page - 1);
+    $urlnext = "search.php?query=" . (string)$search . "&page=" . ($page + 1); // URL für die nächste Seite
+    $urlprev = "search.php?query=" . (string)$search . "&page=" . ($page - 1); // URL für die letzte Seite
   
     if($page > 1) {
         echo "<a href='" . $urlprev . "' class='prev-page'>&#8249;   </a>";
     }
-        echo "<a href='#' class='page-link'>$page</a>";
+        echo "<a href='#' class='page-link'>$page</a>";         // Anzeige der aktuelle Seite
         echo "<a href='" . $urlnext . "' class='next-page'>   &#8250;</a>";
      ?>
 </div>
-
-</body>
-</html>
 
 </body>
 </html>
