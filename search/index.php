@@ -1,5 +1,5 @@
 <?php
 
-header("Location: home.php") // Weiterleitung zur home.php falls nicht schon geschehen
+header("Location: home") // Weiterleitung zur home.php falls nicht schon geschehen
 
 ?>

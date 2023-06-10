@@ -3,7 +3,7 @@
 require 'config.php'; 
 
 if (!empty($_SESSION["id"])) { // Überprüfen, ob bereits eine Sitzung gestartet wurde
-  header("Location: index.php"); // Weiterleitung zur Hauptseite
+  header("Location: index"); // Weiterleitung zur Hauptseite
 }
 
 if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular abgeschickt wurde
@@ -42,14 +42,14 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
   <body>
 
   <div id="header">
-            <a href="../search/home.php" id="logo">MovieList.de</a>
-            <button class="button" onclick="window.location.href='login.php';">Anmelden</button>
+            <a href="../search/home" id="logo">MovieList.de</a>
+            <button class="button" onclick="window.location.href='login';">Anmelden</button>
         </div>
     <br> <br> <br>
 
     <h2>Registration</h2>
 
-    <form class="" action="registration.php" method="post" autocomplete="on">
+    <form class="" action="registration" method="post" autocomplete="on">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required value=""><br>
       <label for="username">Username:</label>
@@ -63,6 +63,6 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
       <button type="submit" name="submit">Registrieren</button>
     </form>
     <br>
-    <a class="aa" href="login.php">Login</a> 
+    <a class="aa" href="login">Login</a> 
   </body>
 </html>
