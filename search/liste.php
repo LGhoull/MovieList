@@ -2,7 +2,7 @@
 <html>
     <?php
         require '../reglog/config.php';
-        session_start();
+        //session_start();
         /*if(!isset($_SESSION['id'])) {
             header("Location: ../reglog/login.php");
             die();
@@ -24,48 +24,55 @@
             // apikey
             $api_key = "91d40bff";
 
-            // url bauen
-            $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=tt1632701";
-
-            /*// get the movie list from database
-            $result = mysqli_query($conn, "SELECT * FROM tb_movielists WHERE id = '$_SESSION["id"]'");
+            // get the movie list from database
+            $UserId = 1; // TODO replace 1 with $_SESSION["id"]
+            $result = mysqli_query($conn, "SELECT * FROM tb_movielists WHERE id = '$UserId'");
             $row = mysqli_fetch_assoc($result);
+            $movieIds = is_null($row) ? [] : [$row["movieId"]];
+            $data = [];
             if (mysqli_num_rows($result) > 0) {
-                $movieIds = $row["movieId"];
-                foreach ($movieIds as $movieId){
-                    //display movie
-                }
+                echo "
+                <link rel='stylesheet' href='style.css'>
+
+                <div id='infoBoxDiv'>
+                <div id='infoBox1'>  Eigene Liste </div>
+                <div id='infoBox2'>" . count($movieIds) . " gefundene Ergebnisse </div>
+                </div>
+            
+                <br>";
                 
             } else {
                 //list length 0
-            }*/
+                echo "
+                <link rel='stylesheet' href='style.css'>
 
-            // ergebniss ziehen
-            $response = file_get_contents($url);
-
-            // json in ne php value decodieren
-            $data = json_decode($response, true);
-
+                <div id='infoBoxDiv'>
+                <div id='infoBox1'> Du hast noch keine Liste! </div>
+                </div>
             
-            
-            $results = $data;
-            echo "
-            <link rel='stylesheet' href='style.css'>
+                <br>";
+            }
+            foreach($movieIds as $movieId)
+            {
+                // url bauen
+                $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movieId;
 
-            <div id='infoBoxDiv'>
-                <div id='infoBox1'>  Eigene Liste </div>
-                <div id='infoBox2'>" . $results . " gefundene Ergebnisse </div>
-                <div id='infoBox3'>Seite " . $page . "</div>
-            </div>
+                // ergebniss ziehen
+                $response = file_get_contents($url);
+
+                // json in ne php value decodieren
+                $movie = json_decode($response, true);
+
+                array_push($data, $movie);
+            }
             
-            <br>";
         ?>
         <link rel="stylesheet" href="style.css">
             <head>
                 <link rel="stylesheet" href="style.css">
             </head>
         <ul class="movie-list">
-            <?php foreach ($data['Search'] as $movie): ?>
+            <?php foreach ($data as $movie): ?>
                 <li class="movie-item">
                     <img class="movie-poster" src=<?php echo $movie['Poster']; ?>>
                     <div class="movie-details">
@@ -100,3 +107,8 @@
         </ul>
     </body>
 </html>
+<?php/*
+    php code für die like buttons:
+    $query = "INSERT INTO tb_movielists VALUES(" . $_SESSION["id"] . ", " . $movieId . ")";
+    mysqli_query($conn, $query);
+*/ ?>
