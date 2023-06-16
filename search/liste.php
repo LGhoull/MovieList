@@ -2,11 +2,10 @@
 <html>
     <?php
         require '../reglog/config.php';
-        //session_start();
-        /*if(!isset($_SESSION['id'])) {
+        if(!isset($_SESSION['id'])) {
             header("Location: ../reglog/login.php");
             die();
-        }*/
+        }
     ?>
     <head>
 	    <link rel="stylesheet" href="style.css">
@@ -25,7 +24,7 @@
             $api_key = "91d40bff";
 
             // get the movie list from database
-            $UserId = 1; // TODO replace 1 with $_SESSION["id"]
+            $UserId = $_SESSION["id"];
             $result = mysqli_query($conn, "SELECT * FROM tb_movielists WHERE id = '$UserId'");
             $row = mysqli_fetch_assoc($result);
             $movieIds = is_null($row) ? [] : [$row["movieId"]];
