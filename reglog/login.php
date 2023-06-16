@@ -49,6 +49,7 @@ if (isset($_POST["submit"])) {
       <input type="password" name="password" id="password" required value=""><br>
       <button type="submit" name="submit">Login</button>
     </form>
+    
     <br>
     <a class="aa" href="registration">Registrierung</a>
   </body>
