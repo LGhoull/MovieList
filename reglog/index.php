@@ -6,7 +6,7 @@ if(!empty($_SESSION["id"])){
   $row = mysqli_fetch_assoc($result);
 }
 else{
-  header("Location: login.php");
+  header("Location: login");
 }
 ?>
 <!DOCTYPE html>
@@ -17,6 +17,6 @@ else{
   </head>
   <body>
     <h1>Welcome <?php echo $row["name"]; ?></h1>
-    <a href="logout.php">Logout</a>
+    <a href="logout">Logout</a>
   </body>
 </html>

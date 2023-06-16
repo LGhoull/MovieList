@@ -1,7 +1,7 @@
 <?php
 require 'config.php';
 if (!empty($_SESSION["id"])) {
-  header("Location: index.php");
+  header("Location: index");
 }
 if (isset($_POST["submit"])) {
   $usernameemail = $_POST["usernameemail"];
@@ -15,7 +15,7 @@ if (isset($_POST["submit"])) {
       $_SESSION["id"] = $row["id"];
       $_SESSION["name"] = $row["name"];
 
-      header("Location: ../search/home.php");
+      header("Location: ../search/home");
     } else {
       echo "<script> alert('Wrong Password'); </script>";
     }
@@ -35,8 +35,8 @@ if (isset($_POST["submit"])) {
    <body>
 
       <div id="header">
-        <a href="../search/home.php" id="logo">MovieList.de</a>
-        <button class="button" onclick="window.location.href='registration.php';">Registrieren</button>
+        <a href="../search/home" id="logo">MovieList.de</a>
+        <button class="button" onclick="window.location.href='registration';">Registrieren</button>
       </div>
     <br> <br> <br>
 
@@ -49,7 +49,8 @@ if (isset($_POST["submit"])) {
       <input type="password" name="password" id="password" required value=""><br>
       <button type="submit" name="submit">Login</button>
     </form>
+    
     <br>
-    <a class="aa" href="registration.php">Registrierung</a>
+    <a class="aa" href="registration">Registrierung</a>
   </body>
 </html>

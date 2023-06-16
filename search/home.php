@@ -7,7 +7,7 @@
         require '../reglog/config.php';
         session_start();
         if(!isset($_SESSION['id'])) {
-            header("Location: ../reglog/login.php");    // Weiterleitung zur login.php falls unangemeldet
+            header("Location: ../reglog/login");    // Weiterleitung zur login.php falls unangemeldet
             die();
         }
 
@@ -31,10 +31,10 @@
 
     <body>  <!--Header - in jedem Dokument gleich-->
         <div id="header">
-        <a href="home.php" id="logo">MovieList.de</a>
-            <button class="button" onclick="window.location.href='home.php';">Home</button>
-            <button class="button" onclick="window.location.href='liste.php';">Meine Liste</button>
-            <button class="button" onclick="window.location.href='../reglog/logout.php';">Abmelden</button>
+        <a href="home" id="logo">MovieList.de</a>
+            <button class="button" onclick="window.location.href='home';">Home</button>
+            <button class="button" onclick="window.location.href='liste';">Meine Liste</button>
+            <button class="button" onclick="window.location.href='../reglog/logout';">Abmelden</button>
         </div>
     <br> <br>
     
@@ -44,43 +44,43 @@
 
 	<div id="search">   <!--Suche mit Suchbar und Button-->
 		<input type="text" placeholder="Suche...">
-        <button class="button2" onclick="window.location.href='search.php?query=' + encodeURIComponent(document.querySelector('#search input[type=text]').value);"><span class="material-symbols-outlined" style="color:azure;">search</span></button>
+        <button class="button2" onclick="window.location.href='search?query=' + encodeURIComponent(document.querySelector('#search input[type=text]').value);"><span class="material-symbols-outlined" style="color:azure;">search</span></button>
 	</div>
 
     <div class="container"> <!--ein Container mit den Karten der Genres. TODO: Objektorientiert darstellen-->
-        <div class="box" onclick="window.location.href='search.php?query=action'">
+        <div class="box" onclick="window.location.href='search?query=action'">
             <img src="https://via.placeholder.com/50" alt="Action">
             <span><span class="material-symbols-outlined">arrow_forward_ios</span> Action</span>
         </div>
-        <div class="box" onclick="window.location.href='search.php?query=comedy'">
+        <div class="box" onclick="window.location.href='search?query=comedy'">
             <img src="https://via.placeholder.com/50" alt="Comedy">
             <span><span class="material-symbols-outlined">arrow_forward_ios</span> Comedy</span>
         </div>
-        <div class="box" onclick="window.location.href='search.php?query=drama'">
+        <div class="box" onclick="window.location.href='search?query=drama'">
             <img src="https://via.placeholder.com/50" alt="Drama">
             <span><span class="material-symbols-outlined">arrow_forward_ios</span> Drama</span>
         </div>
-        <div class="box" onclick="window.location.href='search.php?query=horror'">
+        <div class="box" onclick="window.location.href='search?query=horror'">
             <img src="https://via.placeholder.com/50" alt="Horror">
             <span><span class="material-symbols-outlined">arrow_forward_ios</span> Horror</span>
         </div>
-        <div class="box" onclick="window.location.href='search.php?query=sci-fi'">
+        <div class="box" onclick="window.location.href='search?query=sci-fi'">
             <img src="https://via.placeholder.com/50" alt="Science Fiction">
             <span><span class="material-symbols-outlined">arrow_forward_ios</span> Science Fiction</span>
         </div>
-        <div class="box" onclick="window.location.href='search.php?query=thriller'">
+        <div class="box" onclick="window.location.href='search?query=thriller'">
             <img src="https://via.placeholder.com/50" alt="Thriller">
             <span><span class="material-symbols-outlined">arrow_forward_ios</span> Thriller</span>
         </div>
-        <div class="box" onclick="window.location.href='search.php?query=animation'">
+        <div class="box" onclick="window.location.href='search?query=animation'">
             <img src="https://via.placeholder.com/50" alt="Animation">
             <span><span class="material-symbols-outlined">arrow_forward_ios</span> Animation</span>
         </div>
-        <div class="box" onclick="window.location.href='search.php?query=documentary'">
+        <div class="box" onclick="window.location.href='search?query=documentary'">
             <img src="https://via.placeholder.com/50" alt="Dokumentation">
             <span><span class="material-symbols-outlined">arrow_forward_ios</span> Dokumentation</span>
         </div>
-        <div class="box" onclick="window.location.href='search.php?query=FSK18'">
+        <div class="box" onclick="window.location.href='search?query=FSK18'">
             <img src="https://via.placeholder.com/50" alt="FSK18">
             <span><span class="material-symbols-outlined">arrow_forward_ios</span> FSK18</span>
         </div>
@@ -90,7 +90,7 @@
         <hr>
 
         <div class="footer"> <!--Footer - experimentelles Feature mit Designänderung-->
-            <form action="home.php" method="post">
+            <form action="home" method="post">
                 <?php 
                     $result = mysqli_query($conn, "select colormode FROM tb_user WHERE id = '" . $_SESSION['id'] . "'");
                     $row = mysqli_fetch_assoc($result);

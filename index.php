@@ -1,5 +1,5 @@
 <?php
 
-header("Location: ./search/home.php")
+header("Location: ./search/home")
 
 ?>

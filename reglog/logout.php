@@ -20,7 +20,7 @@ require 'config.php';
         <body>
 
         <div id='header'>
-        <a href='../search/home.php' id='logo'>MovieList.de</a>
+        <a href='../search/home' id='logo'>MovieList.de</a>
         </div>
         <br> <br> <br> <br> <br>
         <div class='logoutDiv'>
@@ -31,7 +31,7 @@ require 'config.php';
 
     ";
     destroySession();
-    header('Refresh: 5; url=login.php');
+    header('Refresh: 5; url=login');
 
     exit;
 ?>

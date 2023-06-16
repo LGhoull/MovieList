@@ -5,7 +5,7 @@
         require '../reglog/config.php';
         session_start();
         if(!isset($_SESSION['id'])) {
-            header("Location: ../reglog/login.php");
+            header("Location: ../reglog/login");
             die();
         }
     ?>
@@ -17,10 +17,10 @@
     
     <body>                                          <!--siehe home.php-->
         <div id="header">
-        <a href="home.php" id="logo">MovieList.de</a>
-            <button class="button" onclick="window.location.href='home.php';">Home</button>
-            <button class="button" onclick="window.location.href='liste.php';">Meine Liste</button>
-            <button class="button" onclick="window.location.href='../reglog/logout.php';">Abmelden</button>
+        <a href="home" id="logo">MovieList.de</a>
+            <button class="button" onclick="window.location.href='home';">Home</button>
+            <button class="button" onclick="window.location.href='liste';">Meine Liste</button>
+            <button class="button" onclick="window.location.href='../reglog/logout';">Abmelden</button>
         </div>
     <br> <br>
 	
@@ -86,7 +86,7 @@
                 <div class="movie-details">
 					
                     <h2 class="movie-title"> 
-                        <a href="details.php?id=<?php echo $movie['imdbID']; ?>" id="movie-title-link">
+                        <a href="details?id=<?php echo $movie['imdbID']; ?>" id="movie-title-link">
                         <?php echo $movie['Title']; ?>
                         </a>
                     </h2>
@@ -127,8 +127,8 @@
 
     <div class="page">          <!--Seitenauswahl, aktuelle Seite wird per URL(GET) weiter gegeben-->
     <?php
-    $urlnext = "search.php?query=" . (string)$search . "&page=" . ($page + 1); // URL für die nächste Seite
-    $urlprev = "search.php?query=" . (string)$search . "&page=" . ($page - 1); // URL für die letzte Seite
+    $urlnext = "search?query=" . (string)$search . "&page=" . ($page + 1); // URL für die nächste Seite
+    $urlprev = "search?query=" . (string)$search . "&page=" . ($page - 1); // URL für die letzte Seite
   
     if($page > 1) {
         echo "<a href='" . $urlprev . "' class='prev-page'>&#8249;   </a>";

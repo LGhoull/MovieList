@@ -5,7 +5,7 @@
         require '../reglog/config.php';
         session_start();
         if(!isset($_SESSION['id'])) {
-            header("Location: ../reglog/login.php");
+            header("Location: ../reglog/login");
             die();
         }
     ?>
@@ -17,10 +17,10 @@
 
     <body>
         <div id="header">
-        <a href="home.php" id="logo">MovieList.de</a>
-            <button class="button" onclick="window.location.href='home.php';">Home</button>
-            <button class="button" onclick="window.location.href='liste.php';">Meine Liste</button>
-            <button class="button" onclick="window.location.href='../reglog/logout.php';">Abmelden</button>
+        <a href="home" id="logo">MovieList.de</a>
+            <button class="button" onclick="window.location.href='home';">Home</button>
+            <button class="button" onclick="window.location.href='liste';">Meine Liste</button>
+            <button class="button" onclick="window.location.href='../reglog/logout';">Abmelden</button>
         </div>
     <br> <br>
 
