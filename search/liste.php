@@ -13,10 +13,10 @@
     </head>
     <body>
         <div id="header">
-            <a href="home.php" id="logo">MovieList.de</a>
-            <button class="button" onclick="window.location.href='home.php';">Home</button>
-            <button class="button" onclick="window.location.href='liste.php';">Meine Liste</button>
-            <button class="button" onclick="window.location.href='../reglog/logout.php';">Abmelden</button>
+            <a href="home" id="logo">MovieList.de</a>
+            <button class="button" onclick="window.location.href='home';">Home</button>
+            <button class="button" onclick="window.location.href='liste';">Meine Liste</button>
+            <button class="button" onclick="window.location.href='../reglog/logout';">Abmelden</button>
         </div>
         <br> <br>
         <?php
@@ -25,7 +25,7 @@
 
             // get the movie list from database
             $UserId = $_SESSION["id"];
-            $result = mysqli_query($conn, "SELECT * FROM tb_movielists WHERE id = '$UserId'");
+            $result = mysqli_query($conn, "SELECT * FROM tb_movieLists WHERE id = '$UserId'");
             $row = mysqli_fetch_assoc($result);
             $movieIds = is_null($row) ? [] : [$row["movieId"]];
             $data = [];
@@ -34,7 +34,7 @@
                 <link rel='stylesheet' href='style.css'>
 
                 <div id='infoBoxDiv'>
-                <div id='infoBox1'>  Eigene Liste </div>
+                <div id='infoBox1'>  Persönliche Liste von " . $_SESSION["name"] . " </div>
                 <div id='infoBox2'>" . count($movieIds) . " gefundene Ergebnisse </div>
                 </div>
             
