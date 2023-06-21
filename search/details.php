@@ -8,6 +8,24 @@
             header("Location: ../reglog/login");
             die();
         }
+
+        if(isset($_POST["submit"])) {
+          if($_POST["add"]) {
+            $userid = $_SESSION["id"];
+            $movieid = $_GET["id"];
+
+            $query = "INSERT INTO tb_movieLists(movieId, id) VALUES($movieid, $userid)";
+            mysqli_query($conn, $query);
+            header("Refresh: 2;");
+          } else {
+            $userid = $_SESSION["id"];
+            $movieid = $_GET["id"];
+            
+            $query = "DELETE FROM tb_movieLists WHERE id = $userid AND movieId = $movieid)";
+            mysqli_query($conn, $query);
+            header("Refresh: 1;");
+          }
+        }
     ?>
 
     <head>
@@ -63,6 +81,38 @@
     <h3>Typ: <?php echo $data['Type']?> </h3>
     <h3>Staffeln: <?php echo $data['totalSeasons']?> </h3>
     
+      <span> <?php echo $_SESSION["id"] . $_GET["id"] ;?></span>
+
+    <form action="" method="POST">
+
+    <?php 
+
+    $UserId = $_SESSION["id"];
+    $result = mysqli_query($conn, "SELECT * FROM tb_movieLists WHERE id = '$UserId'");
+    $row = mysqli_fetch_assoc($result);
+    $listMovieIds = is_null($row) ? [] : [$row["movieId"]];
+    $isMovieInList = false;
+    foreach($listMovieIds as $listMovieId){
+        if($listMovieId == $_GET["id"])
+        {
+            $isMovieInList = true;
+        }
+    }
+
+    if($isMovieInList) {
+      echo "
+        <input type='hidden' name='remove'>
+        <button class='buttonList' type='submit' name='submit'>Von der Liste entfernen</button>
+      ";
+    } else {
+      echo "
+        <input type='hidden' name='add'>
+        <button class='buttonList' type='submit' name='submit'>Zur Liste hinzufügen</button>
+      ";
+    }
+
+    ?>
+    </form>
 
   </body>
 </html>
