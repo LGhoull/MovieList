@@ -23,7 +23,7 @@ body {
 
 #welcome {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   border-radius: 14px;
   font-size: 40px;
   color: #d2d2d2;
@@ -68,6 +68,7 @@ body {
   color: #2d2d30;
   border: #2d2d30 solid 2px; 
   margin-left: 5px;
+  border-radius: 7px;
   border: transparent solid 2px;
   height: 38.1px;
 }
@@ -79,9 +80,11 @@ body {
 #search {
   display: flex;
   justify-content: center;
+  justify-items: center;
+  justify-self: center;
   align-items: center;
   height: 100px;
-  width: auto;
+  width: 100%;
   font-size: 20px;
   margin-top: 20px;
 }
@@ -310,11 +313,13 @@ body {
 /*----- Footer / Designwahl-----*/
 
 .footer {
-  display: flex;
+  display: block;
   text-align: center;
   justify-content: center;
   align-content: center;
-  bottom: 1px;
+  bottom: 5px;
+  width: 99%;
+  position: absolute;
 }
 
 .footer a {

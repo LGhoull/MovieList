@@ -9,21 +9,22 @@
             die();
         }
 
-        if(isset($_POST["submit"])) {
-          if($_POST["add"]) {
+        if(isset($_GET["action"])) {
+
+          if($_GET["action"] == "add") {
             $userid = $_SESSION["id"];
             $movieid = $_GET["id"];
 
-            $query = "INSERT INTO tb_movieLists(movieId, id) VALUES($movieid, $userid)";
-            mysqli_query($conn, $query);
-            header("Refresh: 2;");
+            $query = "INSERT INTO tb_movieLists(movieid, id) VALUES('$movieid', '$userid')";
+            if(mysqli_query($conn, $query) == TRUE) {  } else { echo $conn->error(); }
+            header("Refresh: 2; url=details?id=$currentid");
           } else {
             $userid = $_SESSION["id"];
             $movieid = $_GET["id"];
             
-            $query = "DELETE FROM tb_movieLists WHERE id = $userid AND movieId = $movieid)";
-            mysqli_query($conn, $query);
-            header("Refresh: 1;");
+            $query = "DELETE FROM tb_movieLists WHERE id = '$userid' AND movieid = '$movieid'";
+            if(mysqli_query($conn, $query) == TRUE) { } else { echo $conn->error(); }
+            header("Refresh: 2; url=details?id=$currentid");
           }
         }
     ?>
@@ -83,10 +84,8 @@
     
       <span> <?php echo $_SESSION["id"] . $_GET["id"] ;?></span>
 
-    <form action="" method="POST">
 
     <?php 
-
     $UserId = $_SESSION["id"];
     $result = mysqli_query($conn, "SELECT * FROM tb_movieLists WHERE id = '$UserId'");
     $row = mysqli_fetch_assoc($result);
@@ -100,19 +99,18 @@
     }
 
     if($isMovieInList) {
+      $redirectUrl = $_SERVER['REQUEST_URI'] . "&action=remove";
       echo "
-        <input type='hidden' name='remove'>
-        <button class='buttonList' type='submit' name='submit'>Von der Liste entfernen</button>
+        <button class='buttonList' onclick=\"window.location.href = '$redirectUrl';\">Von der Liste entfernen</button>
       ";
     } else {
+      $redirectUrl = $_SERVER['REQUEST_URI'] . "&action=add";
       echo "
-        <input type='hidden' name='add'>
-        <button class='buttonList' type='submit' name='submit'>Zur Liste hinzufügen</button>
+        <button class='buttonList' onclick=\"window.location.href = '$redirectUrl';\">Zur Liste hinzufügen</button>
       ";
     }
 
     ?>
-    </form>
 
   </body>
 </html>

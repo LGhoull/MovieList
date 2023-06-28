@@ -43,9 +43,11 @@
     </div>
 
 	<div id="search">   <!--Suche mit Suchbar und Button-->
-		<input type="text" placeholder="Suche...">
-        <button class="button2" onclick="window.location.href='search?query=' + encodeURIComponent(document.querySelector('#search input[type=text]').value);"><span class="material-symbols-outlined" style="color:azure;">search</span></button>
-	</div>
+    <form id="search" action="search" method="GET">
+        <input type="text" name="query" placeholder="Suche...">
+        <button type="submit" name="submit" class="button2"><span class="material-symbols-outlined" style="color:azure;">search</span></button>
+    </form>
+    </div>
 
     <div class="container"> <!--ein Container mit den Karten der Genres. TODO: Objektorientiert darstellen-->
         <div class="box" onclick="window.location.href='search?query=action'">
@@ -87,9 +89,8 @@
     </div>
         <br> 
 
-        <hr>
-
         <div class="footer"> <!--Footer - experimentelles Feature mit Designänderung-->
+        <hr>
             <form action="home" method="post">
                 <?php 
                     $result = mysqli_query($conn, "select colormode FROM tb_user WHERE id = '" . $_SESSION['id'] . "'");

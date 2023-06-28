@@ -27,7 +27,7 @@
             $UserId = $_SESSION["id"];
             $result = mysqli_query($conn, "SELECT * FROM tb_movieLists WHERE id = '$UserId'");
             $row = mysqli_fetch_assoc($result);
-            $movieIds = is_null($row) ? [] : [$row["movieId"]];
+            $movieIds = is_null($row) ? [] : [$row["movieid"]];
             $data = [];
             if (mysqli_num_rows($result) > 0) {
                 echo "
