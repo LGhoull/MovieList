@@ -67,11 +67,11 @@
 
         <ul class="movie-list">
             <?php foreach ($data as $movie){
-                echo "<li class=\"movie-item\">                    <img class=\"movie-poster\" src=" . $movie['Poster'] . " >                    <div class=\"movie-details\">                        <h2 class=\"movie-title\">                             <a href=\"details.php?id=" . $movie['imdbID'] . "\" id=\"movie-title-link\">                            " . $movie['Title'] . "                            </a>                        </h2>                        <p class=\"movie-overview\">                            " . $movie['Year']; . " • "
+                echo "<li class=\"movie-item\">                    <img class=\"movie-poster\" src=" . $movie['Poster'] . " >                    <div class=\"movie-details\">                        <h2 class=\"movie-title\">                             <a href=\"details.php?id=" . $movie['imdbID'] . "\" id=\"movie-title-link\">                            " . $movie['Title'] . "                            </a>                        </h2>                        <p class=\"movie-overview\">                            " . $movie['Year']; . " • ";
                 if($movie['Type'] == 'movie') {echo 'Film';} elseif ($movie['Type'] == 'series') {echo 'Serie';} elseif ($movie['Type'] == 'game') {echo 'Spiel';} else {echo 'Sonstiges';}
-                echo " • imdb-Bewertung"                             
+                echo " • imdb-Bewertung";                             
                 $movieData = json_decode(file_get_contents("https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movie['imdbID']), true);                                echo $movieData['imdbRating'];                                echo "<br>" . $movieData['Plot'];
-                echo "</p>                    </div>                </li>"
+                echo "</p>                    </div>                </li>";
             }
             ?>
         </ul>
