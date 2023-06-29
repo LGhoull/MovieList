@@ -22,7 +22,7 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Passwort hashen (sicherer als das Klartext-Passwort zu speichern)
       $query = "insert into tb_user(name,username,email,password) VALUES('$name', '$username', '$email', '$hashedPassword');"; // SQL-Query zum Einfügen des neuen Benutzers
       mysqli_query($conn, $query); // Query ausführen, um den neuen Benutzer in die Datenbank einzufügen
-      echo "<script> alert('Das Konto wurde angelegt. Weiterleitung...'); </script>"; // Erfolgsmeldung ausgeben
+      echo "<script> alert('Das Konto wurde angelegt'); </script>"; // Erfolgsmeldung ausgeben
       
     } else {
       echo "<script> alert('Das eingegebene Passwort ist nicht korrekt'); </script>"; // Fehlermeldung ausgeben, dass die Passwörter nicht übereinstimmen

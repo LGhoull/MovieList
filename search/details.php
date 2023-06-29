@@ -45,7 +45,6 @@
 
 
     <?php
-
       $id = "";
       if(isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -71,19 +70,18 @@
       }
     ?>
 
-  
-    <h3>Titel: <?php echo $data['Title']?> </h3>
-    <h3>Erscheinungsdatum: <?php echo $data['Released']?> </h3>
-    <h3>Länge: <?php echo $data['Runtime']?> </h3>
-    <h3>Genres: <?php echo $data['Genre']?> </h3>
-    <h3>Hauptrollen: <?php echo $data['Actors']?> </h3>
-    <h3>Kurzbeschreibung: <?php echo $data['Plot']?> </h3>
-    <h3>imdb Bewertung: <?php echo $data['imdbRating']?> </h3>
-    <h3>Typ: <?php echo $data['Type']?> </h3>
-    <h3>Staffeln: <?php echo $data['totalSeasons']?> </h3>
-    
-      <span> <?php echo $_SESSION["id"] . $_GET["id"] ;?></span>
+    <div class="imagediv">
 
+      <img src="<?php echo $data["Poster"]; ?>" alt="">
+
+      <div class="detailbox" style="margin-left: 100px; max-width: 40%;">
+        <span class="detailtext">Kurzbeschreibung:</span><br>
+        <span class="detailvalue"><?php echo $data['Plot']?></span>
+      </div>
+    </div>
+    
+
+    <div style="float: right; width: 41%; margin-right: 420px;">
 
     <?php 
     $UserId = $_SESSION["id"];
@@ -112,6 +110,54 @@
     }
 
     ?>
+
+  </div>
+
+  <p style="margin-top: 100px"></p>
+
+    <div class="grid-container">
+      <div class="detailbox">
+        <span class="detailtext">Titel:</span><br>
+        <span class="detailvalue"><?php echo $data['Title']?></span>
+      </div>
+      <div class="detailbox">
+        <span class="detailtext">Erscheinungsdatum:</span><br>
+        <span class="detailvalue"><?php echo $data['Released']?></span>
+      </div>
+      <div class="detailbox">
+        <span class="detailtext">Länge:</span><br>
+        <span class="detailvalue"><?php echo $data['Runtime']?></span>
+      </div>
+      <div class="detailbox">
+        <span class="detailtext">Genres:</span><br>
+        <span class="detailvalue"><?php echo $data['Genre']?></span>
+      </div>
+      <div class="detailbox">
+        <span class="detailtext">Hauptrollen:</span><br>
+        <span class="detailvalue"><?php echo $data['Actors']?></span>
+      </div>
+      <div class="detailbox">
+        <span class="detailtext">imdb Bewertung:</span><br>
+        <span class="detailvalue"><?php echo $data['imdbRating']?></span>
+      </div>
+      <div class="detailbox">
+        <span class="detailtext">Typ:</span><br>
+        <span class="detailvalue"><?php
+                                if($data['Type'] == 'movie') {
+                                    echo 'Film';
+                                } elseif ($data['Type'] == 'series') {
+                                    echo 'Serie';
+                                } elseif ($data['Type'] == 'game') {
+                                    echo 'Spiel';
+                                } else {
+                                    echo 'Sonstiges';
+                                }?></span>
+      </div>
+      <div class="detailbox">
+        <span class="detailtext">Staffeln:</span><br>
+        <span class="detailvalue"><?php echo $data['totalSeasons']?></span>
+      </div>
+    </div>
 
   </body>
 </html>

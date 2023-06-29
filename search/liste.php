@@ -8,7 +8,7 @@
         }
     ?>
     <head>
-	    <link rel="stylesheet" href="style.css">
+        <link href="style.css" rel="stylesheet" type="text/css"/>
         <title>MovieList.de</title>
     </head>
     <body>
@@ -23,17 +23,19 @@
             // apikey
             $api_key = "91d40bff";
 
-            // get the movie list from database
+            // get the movie list from database     $row["movieid"][0]
             $UserId = $_SESSION["id"];
-            $result = mysqli_query($conn, "SELECT * FROM tb_movieLists WHERE id = '$UserId'");
-            $row = mysqli_fetch_assoc($result);
-            $data = [];
 
-            if (mysqli_num_rows($result) > 0) {
+            $query = "select * from tb_movieLists where id='$UserId'";
+            $result = $conn->query($query);
+
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+
+            if (count($data) > 0) {
                 echo "
                 <div id='infoBoxDiv'>
                 <div id='infoBox1'>  Persönliche Liste von " . $_SESSION["name"] . " </div>
-                <div id='infoBox2'>" . count($row) . " gefundene Ergebnisse </div>
+                <div id='infoBox2'>" . count($data) . " gefundene Ergebnisse </div>
                 </div>
             
                 <br>";
@@ -48,37 +50,53 @@
                 <br>";
             }
 
+            $movieData = [];
 
-            foreach($row["movieid"] as $movieId)
+            foreach($data as $movieId)
             {
                 // url bauen
-                $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movieId;
+                $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movieId["movieid"];
 
                 // ergebniss ziehen
                 $response = file_get_contents($url);
 
                 // json in ne php value decodieren
-                $movie = json_decode($response, true);
-
-                array_push($data, $movie);
+                $value = json_decode($response, true);
+                
+                array_push($movieData, $value);
             }
             
         ?>
 
         <ul class="movie-list">
-            <?php foreach ($data as $movie){
-                echo "<li class=\"movie-item\">                    <img class=\"movie-poster\" src=" . $movie['Poster'] . " >                    <div class=\"movie-details\">                        <h2 class=\"movie-title\">                             <a href=\"details.php?id=" . $movie['imdbID'] . "\" id=\"movie-title-link\">                            " . $movie['Title'] . "                            </a>                        </h2>                        <p class=\"movie-overview\">                            " . $movie['Year']; . " • ";
-                if($movie['Type'] == 'movie') {echo 'Film';} elseif ($movie['Type'] == 'series') {echo 'Serie';} elseif ($movie['Type'] == 'game') {echo 'Spiel';} else {echo 'Sonstiges';}
-                echo " • imdb-Bewertung";                             
-                $movieData = json_decode(file_get_contents("https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movie['imdbID']), true);                                echo $movieData['imdbRating'];                                echo "<br>" . $movieData['Plot'];
-                echo "</p>                    </div>                </li>";
-            }
-            ?>
+            <?php foreach ($movieData as $movie): ?>
+                <li class="movie-item">
+                    <img class="movie-poster" src=<?php echo $movie['Poster']; ?>>
+                    <div class="movie-details">
+                        <h2 class="movie-title"> 
+                            <a href="details.php?id=<?php echo $movie['imdbID']; ?>" id="movie-title-link">
+                            <?php echo $movie['Title']; ?>
+                            </a>
+                        </h2>
+                        <p class="movie-overview">
+                            <?php echo $movie['Year'];?> • 
+
+                            <?php 
+                                if($movie['Type'] == 'movie') {
+                                    echo 'Film';
+                                } elseif ($movie['Type'] == 'series') {
+                                    echo 'Serie';
+                                } elseif ($movie['Type'] == 'game') {
+                                    echo 'Spiel';
+                                } else {
+                                    echo 'Sonstiges';
+                                }
+                            ?> • imdb-Bewertung <?php echo $movie["imdbRating"]."<br>" . $movie['Plot']; ?>
+                            
+                        </p>
+                    </div>
+                </li>
+            <?php endforeach; ?>
         </ul>
     </body>
 </html>
-<?php/*
-    php code für die like buttons:
-    $query = "INSERT INTO tb_movielists VALUES(" . $_SESSION["id"] . ", " . $movieId . ")";
-    mysqli_query($conn, $query);
-*/ ?>

@@ -51,65 +51,42 @@
 
     <div class="container"> <!--ein Container mit den Karten der Genres. TODO: Objektorientiert darstellen-->
         <div class="box" onclick="window.location.href='search?query=action'">
-            <img src="https://via.placeholder.com/50" alt="Action">
-            <span><span class="material-symbols-outlined">arrow_forward_ios</span> Action</span>
+            <img src="https://media.tenor.com/pMhSj9NfCXsAAAAd/saul-goodman-better-call-saul.gif" alt="Action">
+            <br><span><span class="material-symbols-outlined">arrow_forward_ios</span> Action</span>
         </div>
         <div class="box" onclick="window.location.href='search?query=comedy'">
-            <img src="https://via.placeholder.com/50" alt="Comedy">
-            <span><span class="material-symbols-outlined">arrow_forward_ios</span> Comedy</span>
+            <img src="https://media.tenor.com/qzKGBxyjjuoAAAAM/fake-gunshot-shoot-self.gif" alt="Comedy">
+            <br><span><span class="material-symbols-outlined">arrow_forward_ios</span> Comedy</span>
         </div>
         <div class="box" onclick="window.location.href='search?query=drama'">
-            <img src="https://via.placeholder.com/50" alt="Drama">
-            <span><span class="material-symbols-outlined">arrow_forward_ios</span> Drama</span>
+            <img src="https://media.tenor.com/flAEdYmmzWkAAAAM/manifest-michaela-stone.gif" alt="Drama">
+            <br><span><span class="material-symbols-outlined">arrow_forward_ios</span> Drama</span>
         </div>
         <div class="box" onclick="window.location.href='search?query=horror'">
-            <img src="https://via.placeholder.com/50" alt="Horror">
-            <span><span class="material-symbols-outlined">arrow_forward_ios</span> Horror</span>
+            <img src="https://media.tenor.com/4bAjBHHF59EAAAAd/creepy-smile-smile.gif" alt="Horror">
+            <br><span><span class="material-symbols-outlined">arrow_forward_ios</span> Horror</span>
         </div>
         <div class="box" onclick="window.location.href='search?query=sci-fi'">
-            <img src="https://via.placeholder.com/50" alt="Science Fiction">
-            <span><span class="material-symbols-outlined">arrow_forward_ios</span> Science Fiction</span>
+            <img src="https://media.tenor.com/8Gw_V8YrUpYAAAAd/interstellar-crying.gif" alt="Science Fiction">
+            <br><span><span class="material-symbols-outlined">arrow_forward_ios</span> Science Fiction</span>
         </div>
         <div class="box" onclick="window.location.href='search?query=thriller'">
-            <img src="https://via.placeholder.com/50" alt="Thriller">
-            <span><span class="material-symbols-outlined">arrow_forward_ios</span> Thriller</span>
+            <img src="https://media.tenor.com/iE7MTQNviFsAAAAd/playing-video-games-regus-patoff.gif" alt="Thriller">
+            <br><span><span class="material-symbols-outlined">arrow_forward_ios</span> Thriller</span>
         </div>
         <div class="box" onclick="window.location.href='search?query=animation'">
-            <img src="https://via.placeholder.com/50" alt="Animation">
-            <span><span class="material-symbols-outlined">arrow_forward_ios</span> Animation</span>
+            <img src="https://media.tenor.com/Perjat4L7xsAAAAC/attack-on-titan-motherfucker.gif" alt="Animation">
+            <br><span><span class="material-symbols-outlined">arrow_forward_ios</span> Animation</span>
         </div>
         <div class="box" onclick="window.location.href='search?query=documentary'">
-            <img src="https://via.placeholder.com/50" alt="Dokumentation">
-            <span><span class="material-symbols-outlined">arrow_forward_ios</span> Dokumentation</span>
+            <img src="https://media.tenor.com/O1pgisgi5AQAAAAd/ronaldo-ronaldo-wink.gif" alt="Dokumentation">
+            <br><span><span class="material-symbols-outlined">arrow_forward_ios</span> Dokumentation</span>
         </div>
         <div class="box" onclick="window.location.href='search?query=FSK18'">
-            <img src="https://via.placeholder.com/50" alt="FSK18">
-            <span><span class="material-symbols-outlined">arrow_forward_ios</span> FSK18</span>
+            <img src="https://media.tenor.com/I-cTGJkdO8MAAAAd/johnnysins-johnny.gif" alt="FSK18">
+            <br><span><span class="material-symbols-outlined">arrow_forward_ios</span> Weitere Filme</span>
         </div>
     </div>
         <br> 
-
-        <div class="footer"> <!--Footer - experimentelles Feature mit Designänderung-->
-        <hr>
-            <form action="home" method="post">
-                <?php 
-                    $result = mysqli_query($conn, "select colormode FROM tb_user WHERE id = '" . $_SESSION['id'] . "'");
-                    $row = mysqli_fetch_assoc($result);
-                    if($row['colormode'] == null || $row['colormode'] == "NULL") {
-                        $colormode=1;
-                    } else {
-                        $colormode = $row['colormode'];
-                    }
-
-                    if($colormode==1) {
-                        echo "<input class='input' type='submit' value='wechseln zu: Heller Modus'/>
-                              <input type='hidden' name='mode' value='hell'/>";
-                    } else {
-                        echo "<input class='input' type='submit' value='wechseln zu: Dunkler Modus'/>
-                              <input type='hidden' name='mode' value='dunkel'/>";
-                    }
-                ?>
-            </form>
-        </div>
 </body>
 </html>
