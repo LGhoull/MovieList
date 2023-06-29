@@ -17,14 +17,14 @@
 
             $query = "INSERT INTO tb_movieLists(movieid, id) VALUES('$movieid', '$userid')";
             if(mysqli_query($conn, $query) == TRUE) {  } else { echo $conn->error(); }
-            header("Refresh: 2; url=details?id=$currentid");
+            header("Refresh: 1; url=details?id=$movieid");
           } else {
             $userid = $_SESSION["id"];
             $movieid = $_GET["id"];
             
             $query = "DELETE FROM tb_movieLists WHERE id = '$userid' AND movieid = '$movieid'";
             if(mysqli_query($conn, $query) == TRUE) { } else { echo $conn->error(); }
-            header("Refresh: 2; url=details?id=$currentid");
+            header("Refresh: 1; url=details?id=$movieid");
           }
         }
     ?>
@@ -87,9 +87,10 @@
 
     <?php 
     $UserId = $_SESSION["id"];
-    $result = mysqli_query($conn, "SELECT * FROM tb_movieLists WHERE id = '$UserId'");
+    $result = mysqli_query($conn, "SELECT * FROM tb_movieLists WHERE id = '$UserId' AND movieid = '$id'");
     $row = mysqli_fetch_assoc($result);
-    $listMovieIds = is_null($row) ? [] : [$row["movieId"]];
+
+    $listMovieIds = is_null($row) ? [] : [$row["movieid"]];
     $isMovieInList = false;
     foreach($listMovieIds as $listMovieId){
         if($listMovieId == $_GET["id"])

@@ -27,15 +27,13 @@
             $UserId = $_SESSION["id"];
             $result = mysqli_query($conn, "SELECT * FROM tb_movieLists WHERE id = '$UserId'");
             $row = mysqli_fetch_assoc($result);
-            $movieIds = is_null($row) ? [] : [$row["movieid"]];
             $data = [];
+
             if (mysqli_num_rows($result) > 0) {
                 echo "
-                <link rel='stylesheet' href='style.css'>
-
                 <div id='infoBoxDiv'>
                 <div id='infoBox1'>  Persönliche Liste von " . $_SESSION["name"] . " </div>
-                <div id='infoBox2'>" . count($movieIds) . " gefundene Ergebnisse </div>
+                <div id='infoBox2'>" . count($row) . " gefundene Ergebnisse </div>
                 </div>
             
                 <br>";
@@ -43,15 +41,15 @@
             } else {
                 //list length 0
                 echo "
-                <link rel='stylesheet' href='style.css'>
-
                 <div id='infoBoxDiv'>
                 <div id='infoBox1'> Du hast noch keine Liste! </div>
                 </div>
             
                 <br>";
             }
-            foreach($movieIds as $movieId)
+
+
+            foreach($row["movieid"] as $movieId)
             {
                 // url bauen
                 $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movieId;
@@ -66,10 +64,7 @@
             }
             
         ?>
-        <link rel="stylesheet" href="style.css">
-            <head>
-                <link rel="stylesheet" href="style.css">
-            </head>
+
         <ul class="movie-list">
             <?php foreach ($data as $movie): ?>
                 <li class="movie-item">
