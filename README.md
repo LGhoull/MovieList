@@ -1,5 +1,5 @@
 # MovieList
-Internet-basistechnologien oder so
+Internet-Basistechnologien Projekt
 
 index/login.php - login und register 
 
