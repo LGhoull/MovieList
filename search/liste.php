@@ -8,7 +8,13 @@
         }
     ?>
     <head>
-        <link href="style.css" rel="stylesheet" type="text/css"/>
+    <?php 
+            if($_SESSION["colormode"] == 2) {
+               echo "<link href='style-light.css' rel='stylesheet' type='text/css'/>";
+            } else {
+                echo "<link href='style.css' rel='stylesheet' type='text/css'/>";
+            }
+        ?>
         <title>MovieList.de</title>
     </head>
     <body>
@@ -81,7 +87,7 @@
                         <p class="movie-overview">
                             <?php echo $movie['Year'];?> • 
 
-                            <?php 
+                            <?php       //Korrekte Anzeige vom Objekttyp
                                 if($movie['Type'] == 'movie') {
                                     echo 'Film';
                                 } elseif ($movie['Type'] == 'series') {

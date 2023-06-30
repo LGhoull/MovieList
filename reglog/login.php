@@ -14,6 +14,7 @@ if (isset($_POST["submit"])) {
       $_SESSION["login"] = true;
       $_SESSION["id"] = $row["id"];
       $_SESSION["name"] = $row["name"];
+      $_SESSION["colormode"] = $row["colormode"];
 
       header("Location: ../search/home");
     } else {

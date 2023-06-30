@@ -11,20 +11,35 @@
             die();
         }
 
-        if(isset($_POST['mode'])) {                     // Experimentelle Designauswahl
-            if($_POST['mode'] == "dunkel") {
-                $query = "update tb_user set 'colormode' = 1 where id = " .  $_SESSION['id'] . ";";
-                mysqli_query($conn, $query);
+        if(isset($_GET["colormode"])) { // Button um Mode zu wechseln
+
+            if($_GET["colormode"] == "dark") { //
+              $userid = $_SESSION["id"];
+  
+              $query = "update tb_user set colormode = '1' where id='$userid'";
+              if(mysqli_query($conn, $query) == TRUE) {  } else { echo $conn->error(); }
+
+              $_SESSION["colormode"] = 1;
+              header("Location: home");
             } else {
-                $query = "update tb_user set 'colormode' = 2 where id = " .  $_SESSION['id'] . ";";
-                mysqli_query($conn, $query);
+                $userid = $_SESSION["id"];
+  
+                $query = "update tb_user set colormode = '2' where id='$userid'";
+                if(mysqli_query($conn, $query) == TRUE) {  } else { echo $conn->error(); }
+                $_SESSION["colormode"] = 2;
+                header("Location: home");
             }
-            header("Refresh:3");
-        }
+          }
     ?>
 
     <head>  <!--beinhaltet eine google css mit verschiedenen symbolen-->
-        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <?php 
+            if($_SESSION["colormode"] == 2) {
+               echo "<link href='style-light.css' rel='stylesheet' type='text/css'/>";
+            } else {
+                echo "<link href='style.css' rel='stylesheet' type='text/css'/>";
+            }
+        ?>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,200" />
         <title>MovieList.de</title>
     </head>
@@ -87,6 +102,40 @@
             <br><span><span class="material-symbols-outlined">arrow_forward_ios</span> Weitere Filme</span>
         </div>
     </div>
-        <br> 
+        <br>
+        <hr><br>
+    <div class="footer">
+<?php 
+    $UserId = $_SESSION["id"];
+    $result = mysqli_query($conn, "SELECT colormode FROM tb_user WHERE id = '$UserId'");
+    $row = mysqli_fetch_assoc($result);
+
+    if(!isset($row["colormode"])) {
+      $query = "update tb_user set colormode='1' where id='$UserId'"; // SQL-Query zum Einfügen des colormodes
+      mysqli_query($conn, $query);
+    }
+    $colormode;
+
+    if($row["colormode"] == 2) {
+        $colormode = 2;
+    } else {
+        $colormode = 1;
+    }
+
+    if($colormode == 2) {
+      $redirectUrl = $_SERVER['REQUEST_URI'] . "?colormode=dark";
+      echo "
+        <button class='buttonList' style='width:50%;' onclick=\"window.location.href = '$redirectUrl';\">Zum Darkmode wechseln</button>
+      ";
+    } else {
+      $redirectUrl = $_SERVER['REQUEST_URI'] . "?colormode=light";
+      echo "
+        <button class='buttonList' style='width:50%;' onclick=\"window.location.href = '$redirectUrl';\">Zum Lightmode wechseln</button>
+      ";
+    }
+
+    ?>
+        
+    </div>
 </body>
 </html>

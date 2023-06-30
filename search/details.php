@@ -2,16 +2,16 @@
 <html>
 
     <?php
-        require '../reglog/config.php';
+        require '../reglog/config.php';   // Weiterleitung zur login.php falls unangemeldet
         session_start();
         if(!isset($_SESSION['id'])) {
             header("Location: ../reglog/login");
             die();
         }
 
-        if(isset($_GET["action"])) {
+        if(isset($_GET["action"])) { //Button um Film hinzuzufügen oder entfernen
 
-          if($_GET["action"] == "add") {
+          if($_GET["action"] == "add") { //
             $userid = $_SESSION["id"];
             $movieid = $_GET["id"];
 
@@ -30,7 +30,13 @@
     ?>
 
     <head>
-	    <link rel="stylesheet" href="style.css">
+    <?php 
+            if($_SESSION["colormode"] == 2) {
+               echo "<link href='style-light.css' rel='stylesheet' type='text/css'/>";
+            } else {
+                echo "<link href='style.css' rel='stylesheet' type='text/css'/>";
+            }
+        ?>
         <title>MovieList.de</title>
     </head>
 
@@ -160,6 +166,7 @@
         <span class="detailvalue"><?php echo $data['totalSeasons']?></span>
       </div>
     </div>
+
 
   </body>
 </html>

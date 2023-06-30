@@ -11,7 +11,13 @@
     ?>
 
     <head>                                          <!--siehe home.php-->
-	    <link rel="stylesheet" href="style.css">
+    <?php 
+            if($_SESSION["colormode"] == 2) {
+               echo "<link href='style-light.css' rel='stylesheet' type='text/css'/>";
+            } else {
+                echo "<link href='style.css' rel='stylesheet' type='text/css'/>";
+            }
+        ?>
         <title>MovieList.de</title>
     </head>
     
