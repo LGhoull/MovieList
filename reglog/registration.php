@@ -38,6 +38,7 @@ if (isset($_POST["submit"])) { // Überprüfen, ob das Registrierungsformular ab
     <title>Registration</title>
     <link rel="stylesheet" href="./css/register.css"> 
     <link rel="stylesheet" href="./css/header.css">
+    <link rel="icon" href="../../../media/favicon.ico" type="image/x-icon">
   </head>
   <body>
 

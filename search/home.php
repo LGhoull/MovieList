@@ -42,6 +42,7 @@
         ?>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,200" />
         <title>MovieList.de</title>
+        <link rel="icon" href="../../../media/favicon.ico" type="image/x-icon">
     </head>
 
     <body>  <!--Header - in jedem Dokument gleich-->

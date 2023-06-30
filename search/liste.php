@@ -16,6 +16,7 @@
             }
         ?>
         <title>MovieList.de</title>
+        <link rel="icon" href="../../../media/favicon.ico" type="image/x-icon">
     </head>
     <body>
         <div id="header">

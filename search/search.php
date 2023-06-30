@@ -19,6 +19,7 @@
             }
         ?>
         <title>MovieList.de</title>
+        <link rel="icon" href="../../../media/favicon.ico" type="image/x-icon">
     </head>
     
     <body>                                          <!--siehe home.php-->
@@ -63,8 +64,6 @@
         if (isset($data['Search'][0])) {
             $results = $data['totalResults'];
             echo "
-            <link rel='stylesheet' href='style.css'>
-
             <div id='infoBoxDiv'>
             <div id='infoBox1'>  Suche für '" . $query . "' </div>
             <div id='infoBox2'>" . $results . " gefundene Ergebnisse </div>

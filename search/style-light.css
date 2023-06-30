@@ -1,286 +1,415 @@
 body {
-    background-color: #6096B4;
+  background-color: #6096B4;
+  font-family: 'Gill Sans', 'Gill Sans MT';
+}
+
+/*----- Header ----- */
+#header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 10px 10px;
+  background-color: #93BFCF;
+  border-radius: 14px;
+  color: black;
+
   }
-  
-  #header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px 20px 10px;
-    background-color: #93BFCF;
-    border-radius: 14px;
-    color: white;
-  }
-  
-  #logo {
-    display: flex;
-    font-size: 45px;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    margin-right: auto;
-    padding-left: 20px;
-    color: whitesmoke;
-    text-decoration: none;
-  }
-  
-  #header button {
-    background-color: #93BFCF;
-    color: whitesmoke;
-    border: none;
-    padding: 10px;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    font-size: 20px;
-    margin-left: 10px;
-    border-radius: 6px;
-    align-items: center;
-    margin-top: auto;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: transparent solid 2px;
-  }
-  
-  #header button:hover {
-    border: whitesmoke solid 2px;
-  
-  }
-  
-  #search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    width: auto;
-    font-size: 20px;
-    margin-top: 20px;
-  }
-  
-  #search input[type="text"] {
-    width: 55%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    font-size: 20px;
-    box-shadow: 0px 0px 5px rgb(146, 144, 144);
-    font-size: 16px;
-    outline: none;
-  }
-  
-  #search button {
-    background-color: #93BFCF;
-    color: whitesmoke;
-    border: none;
-    padding: 10px;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    border-radius: 6px;
-    font-size: 20px;
-    margin-left: 10px;
-    cursor: pointer;
-  }
-  
-  #search button:hover {
-    background-color: #6096B4;
-    border: whitesmoke solid 2px;
-  }
-  
-  
-  #welcome {
-    display: flex;
-    justify-content: space-between;
-    border-radius: 14px;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    font-size: 40px;
-    color: whitesmoke;
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-  }
-  
-  /*  für den Raster-Container */
-  .container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 30px;
-    padding: 90px;
-    width: 65%;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    font-size: 20px;
-    justify-self: center;
-    align-self: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  /* für die einzelnen Kästen */
-  .box {
-    background-color: #EEEEEE;
-    box-shadow: 0px 0px 4px rgb(153, 153, 153);
-    border-radius: 7px;
-    padding: 10px;
-    max-height: 180px;
-    text-align: center;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    font-size: 25px;
-    cursor: pointer;
-    align-content: center;
-    justify-content: center;
-  }
-  
-  .box:hover {
-    background-color: #BDCDD6;
-  }
-  
-  /* für die Texte innerhalb der Kästen */
-  .box span {
-    display: block;
-    margin-top: 10px;
-  }
-  
-  #infoBoxDiv {
-    display: flex;
-    align-self: center;
-    justify-self: center;
-    justify-content: space-between;
-    justify-items: space-between;
-    width: 90%;
-    padding: 10px;
-  }
-  
-  #infoBox1 {
-    background-color: #5BCAEF;
-    border: dashed 2px;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    font-size: 25px;
-    margin-right: 10px;
-    justify-content: center;
-    align-content: center;
-    width: 60%;
-    height: 45px;
-    color: black;
-  }
-  
-  #infoBox2 {
-    background-color: #5BCAEF;
-    border: dashed 2px;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    font-size: 25px;
-    margin-right: 10px;
-    justify-content: center;
-    align-content: center;
-    width: 30%;
-    height: 45px;
-    color: black;
-  }
-  
-  #infoBox3 {
-    background-color: #5BCAEF;
-    border: dashed 2px;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    font-size: 25px;
-    margin-right: 10px;
-    justify-content: center;
-    align-content: center;
-    width: 10%;
-    height: 45px;
-    color: black;
-  }
-  
-  /* Styling für die Film-Liste */
-  .movie-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 93%;
-    align-items: center;
-    align-content: center;
-    align-self: center;
-    border: 1px solid #4A4A4A;
-    border-radius: 3px;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-  }
-  
-  /* Styling für jeden einzelnen Film */
-  .movie-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 2px solid #5C5C5C;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-  }
-  
-  /* Styling für das Filmplakat */
-  .movie-poster {
-    width: 80px;
-    margin-right: 20px;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    border-radius: 3px;
-  }
-  
-  /* Styling für den Titel und die Beschreibung */
-  .movie-details {
-    flex: 1;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-  }
-  
-  .movie-title {
-    font-size: 21px;
-    font-weight: bold;
-    text-decoration: none;
-    margin: 0 0 5px 0;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-  }
-  
-  .movie-title:hover {
-    text-decoration: underline;
-  }
-  
-  #movie-title-link {
-    font-size: 21px;
-    font-weight: bold;
-    text-decoration: none;
-    margin: 0 0 5px 0;
-    color: #252525;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-  }
-  
-  .movie-overview {
-    font-size: 15px;
-    color: #666;
-    margin: 0;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-  }
-  
-  #detail-title {
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    font-size: 34px;
-    color: #6666FF;
-  }
-  
-  .page {
-    display: flex;
-    justify-content: center;
-    justify-self: center;
-    align-self: center;
-    justify-content: center;
-    font-family: 'Arial';
-    font-size: 35px;
-    align-items: center;
-    color: black;
-  }
-  
-  .page-link {
-    text-decoration: none;
-    color: black;
-    font-family: 'Gill Sans', 'Gill Sans MT';
-    font-size: 30x;
-  }
-  
-  .prev-page,
-  .next-page {
-    font-size: 45px;
-    text-decoration: none;
-    color: #000;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  
-  
+
+#logo {
+display: flex;
+font-size: 45px;
+margin-right: auto;
+padding-left: 20px;
+color: black;
+text-decoration: none;
+}
+
+#welcome {
+display: flex;
+justify-content: center;
+border-radius: 14px;
+font-size: 40px;
+color: black;
+margin: auto;
+width: 50%;
+padding: 10px;
+}
+
+.button {
+  background-color: #93BFCF;
+color: black;
+border: none;
+padding: 10px;
+margin-left: 10px;
+font-size: 25px;
+border-radius: 6px;
+font-weight: bold;
+align-items: center;
+cursor: pointer;
+transition: background-color 0.3s ease;
+border: transparent solid 2px;
+}
+
+.button:hover {
+border: black solid 2px; 
+}
+
+
+
+/*----- home.php Body -----*/
+
+#searchIcon {
+height: 25px;
+width: 25px;
+background-color: #2d2d30;
+color: whitesmoke;
+border: none;
+}
+
+.button2 {
+  background-color: #93BFCF;
+  color: whitesmoke;
+border: #2d2d30 solid 2px; 
+margin-left: 5px;
+border-radius: 7px;
+border: transparent solid 2px;
+height: 38.1px;
+}
+
+.button2:hover {
+border: whitesmoke solid 2px; 
+background-color: #6096B4;
+
+}
+
+#search {
+display: flex;
+justify-content: center;
+justify-items: center;
+justify-self: center;
+align-items: center;
+height: 100px;
+width: 100%;
+font-size: 20px;
+margin-top: 20px;
+}
+
+#search input[type="text"] {
+width: 55%;
+padding: 10px;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+outline: none;
+}
+
+#search input:hover {
+box-shadow: 0px 0px 5px #5d5d5e(72, 71, 71);
+}
+
+
+/*----- home.php Genres -----*/
+.container {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(3, 1fr);
+
+gap: 30px;
+padding: 90px;
+width: 65%;
+
+font-size: 20px;
+
+justify-self: center;
+align-self: center;
+margin-left: auto;
+margin-right: auto;
+}
+
+.box {
+  background-color: #EEEEEE;
+/*box-shadow: 0px 0px 4px #2d2d2d;*/
+border-radius: 7px;
+border: transparent solid 2px; 
+
+padding: 10px;
+max-height: 220px;
+
+text-align: center;
+font-size: 25px;
+
+cursor: pointer;
+
+align-content: center;
+justify-content: center;
+}
+.box:hover {
+background-color: #BDCDD6;
+
+}
+
+
+.box span {               /* Texte innerhalb der kästen */
+margin-top: 10px;     
+}
+
+.box img {
+height: 150px;
+width: 170px;
+}
+
+
+/*----- search.php Body -----*/
+#infoBoxDiv {
+display: flex;
+
+align-self: center;
+justify-self: center;
+
+justify-content: space-between;
+justify-items: space-between;
+
+width: 90%;
+padding: 10px 10px 10px 10px;
+}
+
+#infoBox1 {
+  background-color: #93BFCF;
+border: solid 2px;
+
+font-size: 25px;
+
+margin-right: 10px;
+justify-content: center;
+align-content: center;
+justify-items: center;
+text-align: center;
+
+width: 60%;
+height: 30px;
+color: black;
+}
+
+#infoBox2 {
+  background-color: #93BFCF;
+border: solid 2px;
+
+font-size: 25px;
+
+margin-right: 10px;
+justify-content: center;
+align-content: center;
+justify-items: center;
+text-align: center;
+
+width: 30%;
+height: 30px;
+color: black;
+}
+
+#infoBox3 {
+  background-color: #93BFCF;
+border: solid 2px;
+
+font-size: 25px;
+
+margin-right: 10px;
+justify-content: center;
+align-content: center;
+justify-items: center;
+text-align: center;
+
+width: 10%;
+height: 30px;
+color: black;
+}
+
+
+/*----- Suchergebnisse -----*/
+.movie-list {
+list-style: none;
+padding: 0;
+margin: 0;
+width: 93%;
+align-items: center;
+align-content: center;
+align-self: center;
+border: 1px solid #4A4A4A;
+border-radius: 3px;
+}
+
+.movie-item {
+display: flex;
+align-items: center;
+padding: 10px;
+border-bottom: 2px solid #5C5C5C;
+}
+
+.movie-poster {
+width: 80px;
+margin-right: 20px;
+border-radius: 3px;
+}
+
+.movie-details {
+flex: 1;
+}
+
+.movie-title {
+font-size: 21px;
+font-weight: bold;
+text-decoration: none;
+margin: 0 0 5px 0;
+}
+
+.movie-title:hover {
+text-decoration: underline;
+}
+
+#movie-title-link {
+font-size: 21px;
+font-weight: bold;
+text-decoration: none;
+margin: 0 0 5px 0;
+color: #252525;
+}
+
+.movie-overview {
+font-size: 15px;
+color: black;
+margin: 0;
+}
+
+#detail-title {
+display: flex;
+justify-content: center;
+justify-self: center;
+font-size: 34px;
+color: black;
+}
+
+
+
+/*-----search.php Seitenwahl -----*/
+.page {
+display: flex;
+justify-content: center;
+justify-self: center;
+align-self: center;
+justify-content: center;
+font-family: 'Arial';
+font-size: 35px;
+align-items: center;
+color: black;
+}
+
+.page-link {
+text-decoration: none;
+color: black;
+font-size: 30x;
+}
+
+.prev-page,
+.next-page {
+font-size: 45px;
+text-decoration: none;
+color: black;
+padding-left: 10px;
+padding-right: 10px;
+}
+
+
+/*----- Footer / Designwahl-----*/
+
+.footer {
+display: flex;
+text-align: center;
+justify-content: center;
+align-content: center;
+bottom: 2px;
+width: 50%;
+}
+
+.footer a {
+font-family: 'Gill Sans', 'Gill Sans MT';
+color: whitesmoke;
+font-size: 20x;
+margin: 4px;
+}
+
+.input {
+background-color: transparent;
+color: azure;
+border: none;
+}
+
+
+/*-------Detail---------*/
+.detail button {
+  background-color: #5BCAEF;
+border: none;
+color: white;
+padding: 10px;
+margin: 5px;
+cursor: pointer;
+}
+
+.grid-container {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 20px;
+margin-top: 40px;
+max-width: 95%;
+}
+
+.detailbox {
+  background-color: #93BFCF;
+padding: 20px;
+border-radius: 15px;
+box-shadow: 1 4px 5px rgba(23, 23, 23, 0.2);
+height: auto;
+width: auto;
+margin: 10px;
+}
+
+
+.detailtext {
+font-weight: bold;
+color: black;
+font-size: 19px;
+}
+
+.detailvalue {
+margin-top: 8px;
+color: black;
+font-size: 18px;
+}
+
+.imagediv {
+margin: 10px;
+display: flex;
+width: auto;
+max-height: 360px;
+justify-content: center;
+}
+
+.buttonList {
+display: flex;
+align-self: center;
+text-align: center;
+justify-content: center;
+margin-right: 100px;
+background-color: #93BFCF;
+height: 50px;
+width: 100%;
+color: black;
+border: none;
+padding: 10px;
+margin-left: 10px;
+font-size: 25px;
+border-radius: 6px;
+font-weight: bold;
+align-items: center;
+cursor: pointer;
+transition: background-color 0.3s ease;
+border: transparent solid 2px;
+}
