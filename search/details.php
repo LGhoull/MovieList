@@ -112,10 +112,12 @@
     ?>
 
   </div>
-
+<!-- Abstand festlegen --> 
   <p style="margin-top: 100px"></p>
 
     <div class="grid-container">
+
+<!-- Klasse erstellt, damit Design überall gleich ist -->
       <div class="detailbox">
         <span class="detailtext">Titel:</span><br>
         <span class="detailvalue"><?php echo $data['Title']?></span>

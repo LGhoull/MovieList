@@ -23,13 +23,13 @@
             // apikey
             $api_key = "91d40bff";
 
-            // get the movie list from database     $row["movieid"][0]
+            // get the movie list from database
             $UserId = $_SESSION["id"];
 
             $query = "select * from tb_movieLists where id='$UserId'";
             $result = $conn->query($query);
 
-            $data = $result->fetch_all(MYSQLI_ASSOC);
+            $data = $result->fetch_all(MYSQLI_ASSOC); // $data nun als Array[Zeile], der Hashtables Enthält
 
             if (count($data) > 0) {
                 echo "
@@ -40,8 +40,7 @@
             
                 <br>";
                 
-            } else {
-                //list length 0
+            } else { // Falls die Liste leer ist
                 echo "
                 <div id='infoBoxDiv'>
                 <div id='infoBox1'> Du hast noch keine Liste! </div>
@@ -57,19 +56,20 @@
                 // url bauen
                 $url = "https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movieId["movieid"];
 
-                // ergebniss ziehen
-                $response = file_get_contents($url);
+                // Film ziehen
+                $response = file_get_contents($url); 
 
                 // json in ne php value decodieren
                 $value = json_decode($response, true);
                 
+                //Film in $movieData einfügen
                 array_push($movieData, $value);
             }
             
         ?>
 
         <ul class="movie-list">
-            <?php foreach ($movieData as $movie): ?>
+            <?php foreach ($movieData as $movie): //Anzeige von search.php?>
                 <li class="movie-item">
                     <img class="movie-poster" src=<?php echo $movie['Poster']; ?>>
                     <div class="movie-details">
