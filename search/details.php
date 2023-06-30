@@ -17,14 +17,14 @@
 
             $query = "INSERT INTO tb_movieLists(movieid, id) VALUES('$movieid', '$userid')";
             if(mysqli_query($conn, $query) == TRUE) {  } else { echo $conn->error(); }
-            header("Refresh: 1; url=details?id=$movieid");
+            header("Location: details?id=$movieid");
           } else {
             $userid = $_SESSION["id"];
             $movieid = $_GET["id"];
             
             $query = "DELETE FROM tb_movieLists WHERE id = '$userid' AND movieid = '$movieid'";
             if(mysqli_query($conn, $query) == TRUE) { } else { echo $conn->error(); }
-            header("Refresh: 1; url=details?id=$movieid");
+            header("Location: details?id=$movieid");
           }
         }
     ?>
@@ -81,7 +81,7 @@
     </div>
     
 
-    <div style="float: right; width: 41%; margin-right: 420px;">
+    <div style="float: right; width: 42%; margin-right: 16%;">
 
     <?php 
     $UserId = $_SESSION["id"];

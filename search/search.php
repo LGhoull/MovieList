@@ -104,12 +104,12 @@
                         } else {
                             echo 'Sonstiges';
                         }
-                        ?> • imdb-Bewertung 
+                        ?> <!--• imdb-Bewertung--> 
 
                         <?php           // Abrufen der imdb-Bewertung & Kurzübersicht, da diese nicht in der Suchanfrage nicht intigriert ist. > zeitaufwendig & langsam / TODO: lösen
-                        $movieData = json_decode(file_get_contents("https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movie['imdbID']), true);
-                        echo $movieData['imdbRating'];
-                        echo "<br>" . $movieData['Plot'];
+                        //$movieData = json_decode(file_get_contents("https://www.omdbapi.com/?apikey=" . $api_key . "&i=" . $movie['imdbID']), true);
+                        //echo $movieData['imdbRating'];
+                        //echo "<br>" . $movieData['Plot'];
 
                         ?>
                         
